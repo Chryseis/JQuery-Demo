@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="calendar"></div>-->
+<!--<script type="text/javascript" src="bundle.js" charset="utf-8"></script>-->
+<!--</body>-->
+<!--</html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul, li, div, p, * {
+        padding: 0;
+        margin: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    .clearfix:before, .clearfix:after {
+        content: "";
+        display: table;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+
+    .clearfix {
+        zoom: 1;
+    }
+
+    ul, ol {
+        list-style: none;
+    }
+
+    .area-tools {
+        line-height: 30px;
+    }
+
+    a {
+        text-decoration: none;
+
+        out-line: none;
+    }
+
+    .area-tools li {
+        float: left;
+        padding: 0 5px;
+    }
+
+    .area-tools li:hover, .area-tools li.active {
+        background-color: #0099ff;
+        cursor: pointer;
+    }
+
+    .container {
+        width: 280px;
+    }
+
+    .container a {
+        display: inline-block;
+        line-height: 20px;
+        padding: 0 5px;
+        margin: 0 2px;
+    }
+
+    .container a:hover, .container a.active {
+        background-color: #0099ff;
+        cursor: pointer;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+<body>
+<div style="width: 800px;height: 600px;border: solid">
+    <div class="area-content city1">
+        <input id="city" class="city" type="text" style="width: 300px" />
+        <div class="area-container hide">
+            <div class="area">
+                <ul class="area-tools clearfix">
+                    <li class="area-province active">选择省份</li>
+                    <li class="area-citys">选择城市</li>
+                    <li class="area-subdistrict">选择区县</li>
+                </ul>
+            </div>
+            <div class="container province">
+            </div>
+            <div class="container citys hide">
+            </div>
+            <div class="container subdistrict hide">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/html" id="tmpl">
+    <a href="javascript:void(0)" data-code="{{= code}}">{{= name}}</a>
+</script>
+<script type="text/html" id="tmplTest">
+    <div>
+        {{= test}}
+    </div>
+</script>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.tmpl.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script src="js/selectArea.js"></script>
+<script>
+    $(function () {
+        var selectarea=new selectArea();
+        selectarea.loadData('.city1');
+    })
+</script>
+</html>

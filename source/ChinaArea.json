@@ -1,0 +1,78 @@
+[
+  {
+    "province": "北京市",
+    "provinceId": "110000",
+    "citys": [
+      {
+        "city": "北京市",
+        "cityId": "110000",
+        "counties": [
+          {
+            "county": "东城区",
+            "countyId": "110101"
+          },
+          {
+            "county": "西城区",
+            "countyId": "110102"
+          },
+          {
+            "county": "朝阳区",
+            "countyId": "110105"
+          },
+          {
+            "county": "丰台区",
+            "countyId": "110106"
+          },
+          {
+            "county": "石景山区",
+            "countyId": "110107"
+          },
+          {
+            "county": "海淀区",
+            "countyId": "110108"
+          },
+          {
+            "county": "门头沟区",
+            "countyId": "110109"
+          },
+          {
+            "county": "房山区",
+            "countyId": "110111"
+          },
+          {
+            "county": "通州区",
+            "countyId": "110112"
+          },
+          {
+            "county": "顺义区",
+            "countyId": "110113"
+          },
+          {
+            "county": "昌平区",
+            "countyId": "110114"
+          },
+          {
+            "county": "大兴区",
+            "countyId": "110115"
+          },
+          {
+            "county": "怀柔区",
+            "countyId": "110116"
+          },
+          {
+            "county": "平谷区",
+            "countyId": "110117"
+          },
+          {
+            "county": "密云县",
+            "countyId": "110228"
+          },
+          {
+            "county": "延庆县",
+            "countyId": "110229"
+          }
+        ]
+      }
+    ]
+  }
+]
