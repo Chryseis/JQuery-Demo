@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/quill.snow.css">
+    <!--<link rel="stylesheet" href="./css/quill.bubble.css">-->
+    <style>
+        /*@font-face {*/
+            /*font-family: 'fontello';*/
+            /*src: url('./font/fontello.eot?71404307');*/
+            /*src: url('./font/fontello.eot?71404307#iefix') format('embedded-opentype'),*/
+            /*url('./font/fontello.woff?71404307') format('woff'),*/
+            /*url('./font/fontello.ttf?71404307') format('truetype'),*/
+            /*url('./font/fontello.svg?71404307#fontello') format('svg');*/
+            /*font-weight: normal;*/
+            /*font-style: normal;*/
+        /*}*/
+        .demo-icon
+        {
+            font-family: "fontello";
+            font-style: normal;
+            font-weight: normal;
+            speak: none;
+
+            display: inline-block;
+            text-decoration: inherit;
+            width: 1em;
+            margin-right: .2em;
+            text-align: center;
+            /* opacity: .8; */
+
+            /* For safety - reset parent styles, that can break glyph codes*/
+            font-variant: normal;
+            text-transform: none;
+
+            /* fix buttons height, for twitter bootstrap */
+            line-height: 1em;
+
+            /* Animation center compensation - margins should be symmetric */
+            /* remove if not needed */
+            margin-left: .2em;
+
+            /* You can be more comfortable with increased icons size */
+            /* font-size: 120%; */
+
+            /* Font smoothing. That was taken from TWBS */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Uncomment for 3D effect */
+            /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+        }
+        .ql-emoji{
+            outline: none;
+        }
+        .emoji{
+            width: 20px;
+            height: 20px;
+        }
+        .emoji-btn{
+            outline: none;
+            position: relative;
+        }
+        .chat-emoji{
+            border: 1px solid #e3e7ea;
+            background: #fff;
+            position: absolute;
+            left: 193px;
+            top: 37px;
+            max-width: 160px;
+            z-index: 20;
+        }
+        .chat-emoji:before{
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 6px;
+            border-left: 1px solid #e3e7ea;
+            border-top: 1px solid #e3e7ea;
+            padding: 5px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            background-color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/fontello.css">
+</head>
+<body>
+<div id="toolbar" style="position: relative">
+    <!-- Add font size dropdown -->
+    <select class="ql-size">
+        <option value="small"></option>
+        <!-- Note a missing, thus falsy value, is used to reset to default -->
+        <option selected></option>
+        <option value="large"></option>
+        <option value="huge"></option>
+    </select>
+    <!-- Add a bold button -->
+    <button class="ql-bold"></button>
+    <!-- Add subscript and superscript buttons -->
+    <button class="ql-script" value="sub"></button>
+    <button class="ql-script" value="super"></button>
+    <button class="ql-emoji" ><i class="demo-icon icon-glyph-10"></i></button>
+    <div class="chat-emoji">
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="\uD83D\uDE01" alt=""></button>
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="1f600" alt=""></button>
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="1f600" alt=""></button>
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="1f600" alt=""></button>
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="1f600" alt=""></button>
+        <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="1f600" alt=""></button>
+    </div>
+</div>
+<div id="editor">
+</div>
+</body>
+<script src="./lib/jquery.min.js"></script>
+<script src="./js/quill.min.js"></script>
+<script>
+    $(function () {
+        var toolbarOptions = ['bold', 'italic', 'link', 'image',{ 'header': [1, 2, 3, 4, 5, 6, false] }];
+
+        var snowEditor = new Quill('#editor', {
+            modules: {
+                toolbar: '#toolbar'
+            },
+            theme: 'snow'
+        });
+
+        $('')
+//
+//        snowEditor.format('color', 'red');
+//        snowEditor.format('align', 'right');
+    })
+
+</script>
+</html>
