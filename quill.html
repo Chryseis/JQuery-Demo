@@ -87,7 +87,8 @@
             -webkit-transform: rotate(45deg);
             background-color: #fff;
         }
-        .hidden{
+
+        .hidden {
             visibility: hidden;
         }
     </style>
@@ -148,11 +149,7 @@
         })
 
         $('.ql-emoji').click(function () {
-            if($('.chat-emoji').hasClass('hidden')){
-                $('.chat-emoji').removeClass('hidden');
-            }else{
-                $('.chat-emoji').addClass('hidden');
-            }
+            $('.chat-emoji').hasClass('hidden') ? $('.chat-emoji').removeClass('hidden') : $('.chat-emoji').addClass('hidden');
         })
     })
 
