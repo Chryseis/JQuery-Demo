@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="./css/quill.snow.css">
+    <link rel="stylesheet" href="./css/webuploader.css">
     <!--<link rel="stylesheet" href="./css/quill.bubble.css">-->
     <style>
         /*@font-face {*/
@@ -51,7 +52,7 @@
             /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
         }
 
-        .ql-emoji {
+        .ql-emoji,.ql-img {
             outline: none;
         }
 
@@ -110,6 +111,7 @@
     <button class="ql-script" value="sub"></button>
     <button class="ql-script" value="super"></button>
     <button class="ql-emoji"><i class="demo-icon icon-glyph-10"></i></button>
+    <button class="ql-img"><i class="demo-icon icon-glyph-35"></i></button>
     <div class="chat-emoji hidden">
         <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f600.png" data-code="\uD83D\uDE01" alt="">
         </button>
@@ -120,11 +122,12 @@
         <button class="emoji-btn"><img class="emoji" src="./image/emoji/1f605.png" data-code="1f600" alt=""></button>
     </div>
 </div>
-<div id="editor">
+<div id="editor" style="height: 500px;">
 </div>
 </body>
 <script src="./lib/jquery.min.js"></script>
-<script src="./js/quill.min.js"></script>
+<script src="lib/quill.min.js"></script>
+<script src="./lib/webuploader.custom.min.js"></script>
 <script>
     $(function () {
         var toolbarOptions = ['bold', 'italic', 'link', 'image', {'header': [1, 2, 3, 4, 5, 6, false]}];
@@ -150,8 +153,18 @@
 
         $('.ql-emoji').click(function () {
             $('.chat-emoji').hasClass('hidden') ? $('.chat-emoji').removeClass('hidden') : $('.chat-emoji').addClass('hidden');
+        });
+
+        var uploader=WebUploader.create({
+            swf:'./js/Uploader.swf',
+            server:'',
+            pick:'.ql-img',
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/jpg,image/jpeg,image/png'
+            }
         })
     })
-
 </script>
 </html>
