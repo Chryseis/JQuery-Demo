@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .child-width-known{
+        .child-known{
             width: 350px;
             margin: 0 auto;
             text-align: center;
-            line-height: 20px;
+            /*line-height: 20px;//单行居中*/
         }
-        .child-width-unknown{
+        .child-unknown{
             display: table-cell;
         }
-        .parent-width-unknown{
+        .parent-unknown{
             display: table;
             margin: 0 auto;
             /*vertical-align: middle;//垂直居中*/
         }
-        .parent-width-known-position{
+        .parent-known-position{
             position: relative;
         }
-        .child-width-known-position{
+        .child-known-position{
             position: absolute;
             left: 50%;
             width: 350px;
@@ -31,10 +31,10 @@
             /*top:50%;垂直居中*/
             /*margin-top:-175px;//垂直居中*/
         }
-        .parent-width-unknown-position{
+        .parent-unknown-position{
             position: relative;
         }
-        .child-width-unknown-position{
+        .child-unknown-position{
             position: absolute;
             left: 50%;
             transform:translateX(-50%);
@@ -46,16 +46,16 @@
 </head>
 <body>
 <div class="parent">
-    <div class="child-width-known">子元素占位</div>
+    <div class="child-known">子元素占位</div>
 </div>
-<div class="parent-width-unknown">
-    <div class="child-width-unknown">子元素未知占位</div>
+<div class="parent-unknown">
+    <div class="child-unknown">子元素未知占位</div>
 </div>
-<div class="parent-width-known-position">
-    <div class="child-width-known-position">子元素已知不占位</div>
+<div class="parent-known-position">
+    <div class="child-known-position">子元素已知不占位</div>
 </div>
-<div class="parent-width-unknown-position">
-    <div class="child-width-unknown-position">子元素未知不占位</div>
+<div class="parent-unknown-position">
+    <div class="child-unknown-position">子元素未知不占位</div>
 </div>
 </body>
 </html>
