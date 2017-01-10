@@ -4,57 +4,50 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .container{
-            float:left;
-            position:relative;
-            left:50%
+        .child-width-known{
+            width: 350px;
+            margin: 0 auto;
+            text-align: center;
         }
-
-        .container ul{
-            list-style:none;
-            margin:0;
-            padding:0;
-
-            position:relative;
-            left:-50%;
+        .child-width-unknown{
+            display: table-cell;
         }
-        .container li{float:left;display:inline;margin-right:8px;}
+        .parent-width-unknown{
+            display: table;
+            margin: 0 auto;
+        }
+        .parent-width-known-position{
+            position: relative;
+        }
+        .child-width-known-position{
+            position: absolute;
+            left: 50%;
+            width: 350px;
+            margin-left: -175px;
+            text-align: center;
+        }
+        .parent-width-unknown-position{
+            position: relative;
+        }
+        .child-width-unknown-position{
+            position: absolute;
+            left: 50%;
+            transform:translateX(-50%);
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <ul>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-    </ul>
+<div class="parent">
+    <div class="child-width-known">子元素宽度已知占位</div>
+</div>
+<div class="parent-width-unknown">
+    <div class="child-width-unknown">子元素宽度未知占位</div>
+</div>
+<div class="parent-width-known-position">
+    <div class="child-width-known-position">子元素宽度已知不占位</div>
+</div>
+<div class="parent-width-unknown-position">
+    <div class="child-width-unknown-position">子元素宽度未知不占位</div>
 </div>
 </body>
 </html>
