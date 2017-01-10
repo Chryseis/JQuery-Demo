@@ -15,6 +15,7 @@
         .parent-width-unknown{
             display: table;
             margin: 0 auto;
+            /*vertical-align: middle;//垂直居中*/
         }
         .parent-width-known-position{
             position: relative;
@@ -23,8 +24,11 @@
             position: absolute;
             left: 50%;
             width: 350px;
+            height: 350px;
             margin-left: -175px;
             text-align: center;
+            /*top:50%;垂直居中*/
+            /*margin-top:-175px;//垂直居中*/
         }
         .parent-width-unknown-position{
             position: relative;
@@ -33,21 +37,24 @@
             position: absolute;
             left: 50%;
             transform:translateX(-50%);
+            /*top:50%*/
+            /*transform:translateY(-50%);//垂直居中*/
+            /*transform: translate(-50%,-50%);垂直水平*/
         }
     </style>
 </head>
 <body>
 <div class="parent">
-    <div class="child-width-known">子元素宽度已知占位</div>
+    <div class="child-width-known">子元素占位</div>
 </div>
 <div class="parent-width-unknown">
-    <div class="child-width-unknown">子元素宽度未知占位</div>
+    <div class="child-width-unknown">子元素未知占位</div>
 </div>
 <div class="parent-width-known-position">
-    <div class="child-width-known-position">子元素宽度已知不占位</div>
+    <div class="child-width-known-position">子元素已知不占位</div>
 </div>
 <div class="parent-width-unknown-position">
-    <div class="child-width-unknown-position">子元素宽度未知不占位</div>
+    <div class="child-width-unknown-position">子元素未知不占位</div>
 </div>
 </body>
 </html>
