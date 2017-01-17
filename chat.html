@@ -83,6 +83,8 @@
 
         .thread-avatar {
             float: left;
+            width: 40px;
+            height: 40px;
         }
 
         .thread-avatar img {
@@ -92,10 +94,13 @@
 
         .thread-content {
             float: left;
+            width: 60%;
         }
 
-       .thread-content-head,.thread-content-body{
+        .thread-content-head, .thread-content-body {
             overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
         }
 
         .thread-time {
@@ -141,14 +146,14 @@
 <script src="lib/fetch.js"></script>
 <script src="lib/jquery.tmpl.js"></script>
 <script src="lib/lodash.min.js"></script>
-<script type="text/html">
+<script type="text/html" id="threadTmpl">
     <li class="thread clearfix">
         <div class="thread-avatar">
             <img src="/image/emoji/00a9.png" alt="">
         </div>
         <div class="thread-content">
-            <div class="thread-content-head">Allen</div>
-            <div class="thread-content-body">send you a message</div>
+            <div class="thread-content-head">{{= nickName}}</div>
+            <div class="thread-content-body">{{= lastMsg.content}}</div>
         </div>
         <div class="thread-time">01/17</div>
     </li>
@@ -172,7 +177,14 @@
             }).then(function (res) {
                 return res.json()
             }).then(function (json) {
-                debugger;
+                var threadList = json.sessions && json.sessions.map(function (item) {
+                            return _.assign(item, {
+                                lastMsg:item.lastMsg? _.assign(item.lastMsg,
+                                        {content: item.lastMsg.from.endsWith('@APP') ? 'an App Msg' : item.lastMsg.content},
+                                        {info: JSON.parse(item.lastMsg.info)}):''
+                            })
+                        })
+                   $('.thread-list').html($('#threadTmpl').tmpl(threadList))
             })
         }
     })
