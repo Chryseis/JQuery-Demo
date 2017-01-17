@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .thread-container {
+            padding: 10px;
+        }
+
+        .thread-list {
+            border: solid 1px #00b7ee;
+            width: 250px;
+            float: left;
+        }
+
+        .thread {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .thread:hover, .active {
+            background: #00b7ee;
+        }
+
+        .chat-wrap {
+            border: solid 1px #00b7ee;
+            float: left;
+            min-width: 700px;
+            max-width: 750px;
+            margin-left: 10px;
+        }
+
+        .underline {
+            border-bottom: 1px solid #00b7ee;
+        }
+
+        .chat-content {
+            padding: 5px;
+            min-height: 700px;
+            max-height: 750px;
+        }
+
+        .chat-send {
+            padding: 5px;
+            height: 150px;
+            position: relative;
+        }
+
+        .chat-send a {
+            position: absolute;
+            background: #00b7ee;
+            text-decoration: none;
+            border: 1px solid #9933ff;
+            border-radius: 2px;
+            top: 120px;
+            right: 33px;
+            letter-spacing: 2px;
+            padding: 2px;
+        }
+
+        .thread-avatar {
+            float: left;
+        }
+
+        .thread-avatar img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .thread-content {
+            float: left;
+        }
+
+       .thread-content-head,.thread-content-body{
+            overflow: hidden;
+        }
+
+        .thread-time {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="thread-container">
+    <ul class="thread-list">
+        <li class="thread clearfix">
+            <div class="thread-avatar">
+                <img src="/image/emoji/00a9.png" alt="">
+            </div>
+            <div class="thread-content">
+                <div class="thread-content-head">Allen</div>
+                <div class="thread-content-body">send you a message</div>
+            </div>
+            <div class="thread-time">01/17</div>
+        </li>
+        <li class="thread clearfix">
+            <div class="thread-avatar">
+                <img src="/image/emoji/00a9.png" alt="">
+            </div>
+            <div class="thread-content">
+                <div class="thread-content-head">Allen</div>
+                <div class="thread-content-body">send you a message</div>
+            </div>
+            <div class="thread-time">01/17</div>
+        </li>
+    </ul>
+    <div class="chat-wrap">
+        <div class="chat-content">123456789</div>
+        <div class="underline"></div>
+        <div class="chat-send">
+            <textarea name="" id="" cols="95" rows="10"></textarea>
+            <a href="javascript:;">发送</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="lib/jquery.js"></script>
+<script src="lib/fetch.js"></script>
+<script src="lib/jquery.tmpl.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script type="text/html">
+    <li class="thread clearfix">
+        <div class="thread-avatar">
+            <img src="/image/emoji/00a9.png" alt="">
+        </div>
+        <div class="thread-content">
+            <div class="thread-content-head">Allen</div>
+            <div class="thread-content-body">send you a message</div>
+        </div>
+        <div class="thread-time">01/17</div>
+    </li>
+</script>
+<script>
+    $(function () {
+        loadThreadList();
+
+        function loadThreadList() {
+            return fetch('http://localhost:1001/launchr/chat/unreadsession', {
+                mode: 'cors',
+                method: 'post',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    "appName": "launchr",
+                    "appToken": "verify-code",
+                    "userName": "ZBAYNbRqYAUBbjDE3",
+                    "start": 0,
+                    "end": 50
+                })
+            }).then(function (res) {
+                return res.json()
+            }).then(function (json) {
+                debugger;
+            })
+        }
+    })
+</script>
+</html>

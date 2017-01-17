@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.container {
+    padding: 10px;
+}
+
+.thread-list {
+    border: solid 1px #00b7ee;
+    width: 250px;
+    float: left;
+}
+
+.thread {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.thread:hover, .active {
+    background: #00b7ee;
+}
+
+.chat-wrap {
+    border: solid 1px #00b7ee;
+    float: left;
+    min-width: 700px;
+    max-width: 750px;
+    margin-left: 10px;
+}
+
+.underline {
+    border-bottom: 1px solid #00b7ee;
+}
+
+.chat-content {
+    padding: 5px;
+    min-height: 700px;
+    max-height: 750px;
+}
+
+.chat-send {
+    padding: 5px;
+    height: 150px;
+    position: relative;
+}
+
+.chat-send a {
+    position: absolute;
+    background: #00b7ee;
+    text-decoration: none;
+    border: 1px solid #9933ff;
+    border-radius: 2px;
+    top: 120px;
+    right: 33px;
+    letter-spacing: 2px;
+    padding: 2px;
+}
+.thread-avatar{
+    float: left;
+}
+.thread-avatar img{
+    width: 40px;
+    height: 40px;
+}
