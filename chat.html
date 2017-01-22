@@ -147,16 +147,17 @@
 <script src="lib/promise-6.1.0.js"></script>
 <script src="lib/jquery.tmpl.js"></script>
 <script src="lib/lodash.min.js"></script>
+<script src="lib/moment.min.js"></script>
 <script type="text/html" id="threadTmpl">
     <li class="thread clearfix">
         <div class="thread-avatar">
             <img src="/image/emoji/00a9.png" alt="">
         </div>
         <div class="thread-content">
-            <div class="thread-content-head">{{= nickName}}</div>
-            <div class="thread-content-body">{{= lastMsg.content}}</div>
+            <div class="thread-content-head">{{= title}}</div>
+            <div class="thread-content-body">{{= info.content}}</div>
         </div>
-        <div class="thread-time">01/17</div>
+        <div class="thread-time">{{= moment(longDate).format('MM/DD')}}</div>
     </li>
 </script>
 <script>
@@ -186,14 +187,14 @@
             }).then(function (res) {
                 return res.json()
             }).then(function (json) {
-                var threadList = json.sessions && json.sessions.map(function (item) {
-                            return _.assign(item, {
-                                lastMsg: item.lastMsg ? _.assign(item.lastMsg,
-                                        {content: item.lastMsg.from.endsWith('@APP') ? 'an App Msg' : item.lastMsg.content},
-                                        {info: JSON.parse(item.lastMsg.info)}) : ''
-                            })
-                        })
-                $('.thread-list').html($('#threadTmpl').tmpl(threadList));
+//                var threadList = json.sessions && json.sessions.map(function (item) {
+//                            return _.assign(item, {
+//                                lastMsg: item.lastMsg ? _.assign(item.lastMsg,
+//                                        {content: item.lastMsg.from.endsWith('@APP') ? 'an App Msg' : item.lastMsg.content},
+//                                        {info: JSON.parse(item.lastMsg.info)}) : ''
+//                            })
+//                        })
+//                $('.thread-list').html($('#threadTmpl').tmpl(threadList));
                 dealUnreadSession(0, json, function (data) {
                     if (data != null) {
                         chatStore.threadList.push(data);
@@ -206,13 +207,15 @@
 
         //批量处理用户会话列表
         function dealUnreadSession(index, res, callback) {
-            if (index > (res.sessions || []).length) {
+            if (index >= (res.sessions || []).length) {
+                chatStore.currentMsgId=res.msgId;
                 //渲染会话
+                renderThread(chatStore.threadList)
                 return;
             }
 
             var item = res.sessions[index];
-            if (item.sessionName.endsWith('@APP') && item.lastMsg) {
+            if (!item.sessionName.endsWith('@APP') && item.lastMsg) {
                 loadUserInfo(item).then(function (data) {
                     if (data != null) {
                         callback(data);
@@ -243,7 +246,9 @@
                         content: item.lastMsg.content,
                         type: item.lastMsg.type,
                         myId: userId
-                    }
+                    },
+                    timer: item.lastMsg.createDate,
+                    longDate: item.lastMsg.createDate
                 })
             }
 
@@ -252,7 +257,7 @@
             if (!reg.test(item.sessionName)) {
                 title = item.nickName;
                 if (title) {
-                    Promise.resolve(_.assign({}, otherValue, {title: title, count: item.count}))
+                  return  Promise.resolve(_.assign({}, otherValue, {title: title, count: item.count}))
                 }
             }
 
@@ -276,7 +281,7 @@
                         longDate: json.data.modified
                     })
 
-                    if (!!reg.test(item.sessionName)) {
+                    if (!reg.test(item.sessionName)) {
                         return otherValue;
                     } else {
                         if (_.find(json.data.memberList, {'userName': userId}) != null) {
@@ -289,6 +294,10 @@
                 }
                 return null;
             })
+        }
+
+        function renderThread(threadList) {
+            $('.thread-list').html($('#threadTmpl').tmpl(threadList));
         }
     })
 </script>
