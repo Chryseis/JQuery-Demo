@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
         .child-known{
             width: 350px;
             margin: 0 auto;
@@ -49,17 +61,46 @@
     </style>
 </head>
 <body>
-<div class="parent">
-    <div class="child-known">子元素占位</div>
+<!--<div class="parent">-->
+    <!--<div class="child-known">子元素占位</div>-->
+<!--</div>-->
+<!--<div class="parent-unknown">-->
+    <!--<div class="child-unknown">子元素未知占位</div>-->
+<!--</div>-->
+<!--<div class="parent-known-position">-->
+    <!--<div class="child-known-position">子元素已知不占位</div>-->
+<!--</div>-->
+<!--<div class="parent-unknown-position">-->
+    <!--<div class="child-unknown-position">子元素未知不占位</div>-->
+<!--</div>-->
+<div class="clearfix" >
+    <span style="width: 40px;;float: left;border:#00a2d4 1px solid">aaa</span>
+    <div style="border:#000000 1px solid;overflow: hidden">bbb</div>
 </div>
-<div class="parent-unknown">
-    <div class="child-unknown">子元素未知占位</div>
+<div>
+    <div class="video" style="display: none">
+        <div id="videoDemo" style="width: 100%;height: 100%"></div>
+    </div>
+    <button id="showVideo">显示视频</button>
 </div>
-<div class="parent-known-position">
-    <div class="child-known-position">子元素已知不占位</div>
-</div>
-<div class="parent-unknown-position">
-    <div class="child-unknown-position">子元素未知不占位</div>
-</div>
+<!--<div class="clearfix">-->
+    <!--<span style="width: 40px;;position:relative;float: left;border:#00a2d4 1px solid">123213123</span>-->
+    <!--<div style="border:#000000 1px solid ">213213132131231</div>-->
+<!--</div>-->
+<script src="lib/jquery.min.js"></script>
+<script src="https://qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js" charset="utf-8"></script>
+<script>
+    $(function () {
+        $('#showVideo').click(function () {
+            $('.video').show();
+            (function(){
+                var option ={"auto_play":"0","file_id":'14651978969403722416',"app_id":"1252767316","width":500,"height":300,"https":0,"stretch_full":1};
+                /*调用播放器进行播放*/
+                new qcVideo.Player( /*代码中的id_video_container将会作为播放器放置的容器使用,可自行替换*/ "videoDemo", option );
+            })();
+        })
+    })
+
+</script>
 </body>
 </html>
