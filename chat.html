@@ -109,18 +109,18 @@
             float: right;
         }
 
-        .chat-content-img{
+        .chat-content-img {
             width: 40px;
             height: 40px;
             float: left;
         }
 
-        .chat-content-wrap{
+        .chat-content-wrap {
             overflow: hidden;
-            padding:3px 9px;
+            padding: 3px 9px;
         }
 
-        .chat-content-detail{
+        .chat-content-detail {
             border: 1px solid #00b7ee;
             border-radius: 3px;
             line-height: 25px;
@@ -128,13 +128,14 @@
             word-wrap: break-word;
             display: inline-block;
             white-space: pre-line;
-            max-width:70%
+            max-width: 70%
         }
 
-        .chat-content-wrap-me{
+        .chat-content-wrap-me {
             text-align: right;
         }
-        .chat-content-item{
+
+        .chat-content-item {
             padding: 5px 0;
         }
     </style>
@@ -215,7 +216,8 @@
 
         var chatStore = {
             threadList: [],
-            currentMsgId: ''
+            currentMsgId: '',
+            currentThreadID: ''
         };
 
         //富文本编辑器
@@ -279,11 +281,11 @@
         }
 
         //适配用户对象
-        function loadUserInfo(item) {
+        function loadUserInfo(item, sessionName) {
             var otherValue = {
                 type: 'chat',
-                count: item.count,
-                threadID: item.sessionName,
+                count: item.count || 0,
+                threadID: item.sessionName || sessionName,
                 info: {},
                 timer: '',
                 longDate: 0,
@@ -301,14 +303,25 @@
                     timer: item.lastMsg.createDate,
                     longDate: item.lastMsg.createDate
                 })
+            } else {
+                otherValue = _.assign({}, otherValue, {
+                    info: {
+                        extend: item.info,
+                        content: item.content,
+                        type: item.type,
+                        myId: userId
+                    },
+                    timer: item.createDate,
+                    longDate: item.createDate
+                })
             }
 
             var title = '';
             var reg = /^[0-9a-zA-Z]{1,}@ChatRoom$/;
-            if (!reg.test(item.sessionName)) {
-                title = item.nickName;
+            if (!reg.test(item.sessionName || sessionName)) {
+                title = item.nickName || JSON.parse(item.info).nickName;
                 if (title) {
-                    return Promise.resolve(_.assign({}, otherValue, {title: title, count: item.count}))
+                    return Promise.resolve(_.assign({}, otherValue, {title: title, count: item.count || 0}))
                 }
             }
 
@@ -319,7 +332,7 @@
                 body: JSON.stringify({
                     "appName": "launchr",
                     "appToken": "verify-code",
-                    "userName": "ZmOaK1ylZehx2qX1",
+                    "userName": userId,
                     "sessionName": item.sessionName
                 })
             }).then(function (res) {
@@ -349,13 +362,13 @@
 
         //渲染列表
         function renderThread(threadList) {
-            $('.thread-list').append($('#threadTmpl').tmpl(threadList));
+            $('.thread-list').html($('#threadTmpl').tmpl(threadList));
         }
 
         //轮循消息
         function loadLongPoll() {
             var currentMsgId = chatStore.currentMsgId;
-            return fetch('http://localhost:1001/launchr/chat/subscribemessage',{
+            return fetch('http://localhost:1001/launchr/chat/subscribemessage', {
                 mode: 'cors',
                 method: 'post',
                 headers: {"Content-Type": "application/json"},
@@ -369,24 +382,45 @@
             }).then(function (res) {
                 return res.json();
             }).then(function (json) {
-                if(json.code===2000){
-                    dealPollMsg(0,json.msg)
-                }else{
+                if (json.code === 2000) {
+                    dealPollMsg(0, json.msg)
+                } else {
                     setTimeout(function () {
                         loadLongPoll()
-                    },1000)
+                    }, 1000)
                 }
             })
         }
 
         //处理消息
-        function dealPollMsg(index,msg) {
-            if(index>=msg.length){
+        function dealPollMsg(index, msg) {
+            if (index >= msg.length) {
                 //修改最大消息id
+                msg.length > 0 && (chatStore.currentMsgId = msg[msg.length - 1].msgId);
                 loadLongPoll();
                 return;
             }
-
+            var item = msg[index];
+            var myself = item.from == userId;
+            var sessionId = myself ? item.to : item.from;
+            var currentTalk = sessionId == chatStore.currentThreadID;
+            //处理消息
+            var currentThread = _.find(chatStore.threadList, function (item) {
+                return item.threadID == sessionId;
+            });
+            if (currentThread == null) {
+                loadUserInfo(item, sessionId).then(function (user) {
+                    var thread = _.assign({}, user, {count: myself ? 0 : 1});
+                    chatStore.threadList.unshift(thread);
+                })
+            } else {
+                //修改thread
+                currentThread.info = {extend: item.info, content: item.content, type: item.type, myId: userId};
+                currentThread.timer=item.createDate;
+                currentThread.count=myself?0:currentThread.count+1;
+            }
+            renderThread(chatStore.threadList);
+            dealPollMsg(index+1,msg);
         }
     })
 </script>
