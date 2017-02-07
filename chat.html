@@ -148,26 +148,49 @@
     <div class="chat-wrap">
         <div class="chat-inner-wrap">
             <div class="chat-content">
-                <ul>
-                    <li class="chat-content-item clearfix">
+                <ul class="clearfix">
+                    <li class="chat-content-item">
                         <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
                         <div class="chat-content-wrap">
                             <pre class="chat-content-detail">12311231231231331312313131331</pre>
                         </div>
                     </li>
-                    <li class="chat-content-item-me clearfix">
+                    <li class="chat-content-item">
                         <div class="chat-content-wrap-me">
                             <pre class="chat-content-detail">12311231231231331312313131331</pre>
                         </div>
                     </li>
-                    <li class="chat-content-item clearfix">
-                        <img class="chat-content-img clearfix" src="/image/emoji/1f4bb.png" alt="">
+                    <li class="chat-content-item">
+                        <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
                         <div class="chat-content-wrap">
                             <pre class="chat-content-detail">12311231231231331312313131331</pre>
                         </div>
                     </li>
-                    <li class="chat-content-item clearfix">
-                        <img class="chat-content-img clearfix" src="/image/emoji/1f4bb.png" alt="">
+                    <li class="chat-content-item">
+                        <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
+                        <div class="chat-content-wrap">
+                            <pre class="chat-content-detail">1231123123123133131231313133112311231231231331312313131331123112312312313313123131313311231123123123133131231313133112311231231231331312313131331</pre>
+                        </div>
+                    </li>
+                    <li class="chat-content-item">
+                        <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
+                        <div class="chat-content-wrap">
+                            <pre class="chat-content-detail">12311231231231331312313131331</pre>
+                        </div>
+                    </li>
+                    <li class="chat-content-item">
+                        <div class="chat-content-wrap-me">
+                            <pre class="chat-content-detail">12311231231231331312313131331</pre>
+                        </div>
+                    </li>
+                    <li class="chat-content-item">
+                        <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
+                        <div class="chat-content-wrap">
+                            <pre class="chat-content-detail">12311231231231331312313131331</pre>
+                        </div>
+                    </li>
+                    <li class="chat-content-item">
+                        <img class="chat-content-img" src="/image/emoji/1f4bb.png" alt="">
                         <div class="chat-content-wrap">
                             <pre class="chat-content-detail">1231123123123133131231313133112311231231231331312313131331123112312312313313123131313311231123123123133131231313133112311231231231331312313131331</pre>
                         </div>
@@ -210,9 +233,13 @@
         <div class="thread-time">{{= moment(longDate).format('MM/DD')}}</div>
     </li>
 </script>
+<script type="text/html" id="contentTmpl">
+
+</script>
 <script>
     $(function () {
-        var userId = 'ZmOaK1ylZehx2qX1';
+        //var userId = 'ZmOaK1ylZehx2qX1'; //mt
+         var userId='ZBAYNbRqYAUBbjDE3';//totoro
 
         var chatStore = {
             threadList: [],
@@ -360,11 +387,6 @@
             })
         }
 
-        //渲染列表
-        function renderThread(threadList) {
-            $('.thread-list').html($('#threadTmpl').tmpl(threadList));
-        }
-
         //轮循消息
         function loadLongPoll() {
             var currentMsgId = chatStore.currentMsgId;
@@ -395,6 +417,7 @@
         //处理消息
         function dealPollMsg(index, msg) {
             if (index >= msg.length) {
+                renderThread(chatStore.threadList);
                 //修改最大消息id
                 msg.length > 0 && (chatStore.currentMsgId = msg[msg.length - 1].msgId);
                 loadLongPoll();
@@ -419,8 +442,22 @@
                 currentThread.timer=item.createDate;
                 currentThread.count=myself?0:currentThread.count+1;
             }
-            renderThread(chatStore.threadList);
             dealPollMsg(index+1,msg);
+        }
+
+        //加载历史记录
+        function initHistory() {
+            
+        }
+
+        //渲染会话列表
+        function renderThread(threadList) {
+            $('.thread-list').html($('#threadTmpl').tmpl(threadList));
+        }
+
+        //渲染历史
+        function renderHistory() {
+
         }
     })
 </script>
