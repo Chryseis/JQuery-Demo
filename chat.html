@@ -417,6 +417,9 @@
         //处理消息
         function dealPollMsg(index, msg) {
             if (index >= msg.length) {
+                chatStore.threadList.sort(function (a,b) {
+                    return b.timer>a.timer
+                })
                 renderThread(chatStore.threadList);
                 //修改最大消息id
                 msg.length > 0 && (chatStore.currentMsgId = msg[msg.length - 1].msgId);
@@ -447,7 +450,19 @@
 
         //加载历史记录
         function initHistory() {
-            
+            fetch('http://localhost:1001/launchr/chat/historymessage', {
+                mode: 'cors',
+                method: 'post',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    "appName": "launchr",
+                    "appToken": "verify-code",
+                    "from": userId,
+                    "to": item.sessionName,
+                    "limit":30,
+                    "endTimestamp": -1
+                })
+            })
         }
 
         //渲染会话列表
