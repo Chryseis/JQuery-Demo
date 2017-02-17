@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    font-family: 'Microsoft YaHei',Arial,sans-serif;
+}
 .clearfix:before, .clearfix:after {
     content: "";
     display: table;
@@ -71,4 +74,108 @@ ul, li {
     color: #fff;
     font-size: 20px;
     font-weight: 400;
+}
+.out-service-container{
+    background-color: #dddddd;
+    height: 500px;
+    padding: 50px 0;
+}
+.service-title{
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff9900;
+   margin-bottom: 50px;
+}
+.service-title:after{
+    content:'';
+    display: block;
+    width: 80px;
+    margin: 5px auto;
+    border-bottom: 3px solid #ff9900;
+}
+.service-wrapper{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.service-item{
+    float: left;
+    background-color: #ffffff;
+    width: 180px;
+    height: 300px;
+    padding: 50px 0;
+    box-sizing: border-box;
+    margin: 0 60px;
+}
+.service-name{
+    text-align: center;
+    font-size: 25px;
+    margin-top: 70px;
+}
+.service-icon{
+    font-size: 70px;
+    text-align: center;
+}
+.middleware-container{
+    height: 830px;
+    background-color: #fff;
+}
+.middlewarre-wrapper{
+    width: 1200px;
+    margin: 0 auto;
+    padding:  80px 0;
+    box-sizing: border-box;
+}
+.middleware-model{
+    float: left;
+    width: 50%;
+    background-image: url('../image/index-hand.png');
+    background-size: cover;
+}
+.middleware-describe{
+    overflow: hidden;
+    padding: 15px;
+}
+.middle-describe-title{
+    line-height: 30px;
+    padding: 20px 0 20px 30px;
+}
+.middle-describe-title>img{
+    width: 239px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.middle-describe-subtitle{
+    padding: 10px 30px;
+    line-height: 30px;
+    font-size: 25px;
+}
+.middle-describe-detail{
+    padding: 10px 30px;
+}
+.middle-describe-type{
+    padding: 10px 30px;
+}
+.middle-icon{
+    font-size: 35px;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 50%;
+    text-align: center;
+}
+.middle-describe-item>span{
+    float: left;
+}
+.middle-content-wrapper{
+    padding: 0 5px;
+    overflow: hidden;
+}
+.middle-describe-item{
+    margin: 30px 0;
+}
+.middle-type-title{
+    font-size: 20px;
 }
