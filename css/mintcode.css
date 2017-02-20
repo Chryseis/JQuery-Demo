@@ -120,7 +120,7 @@ ul, li {
     text-align: center;
 }
 .middleware-container{
-    height: 830px;
+    height: 823px;
     background-color: #fff;
 }
 .middlewarre-wrapper{
@@ -160,14 +160,15 @@ ul, li {
     padding: 10px 30px;
 }
 .middle-icon{
-    font-size: 35px;
-    padding: 5px;
+    font-size: 25px;
+    padding: 10px;
     border: 1px solid;
     border-radius: 50%;
     text-align: center;
 }
 .middle-describe-item>span{
     float: left;
+    padding-top: 7px
 }
 .middle-content-wrapper{
     padding: 0 5px;
@@ -178,4 +179,48 @@ ul, li {
 }
 .middle-type-title{
     font-size: 20px;
+}
+.feature-container{
+    background-color: #f5f5f5;
+    background-size: cover;
+    padding: 50px 0;
+}
+.feature-title{
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+    color: #ff9900;
+}
+.feature-title:after{
+    content:'';
+    display: block;
+    width: 80px;
+    margin: 10px auto;
+    border-bottom: 3px solid #ff9900;
+}
+.feature-kinds{
+    width: 1200px;
+    margin: 50px auto;
+
+}
+.feature-item{
+    width: 33.3%;
+    float: left;
+    margin: 20px 0;
+}
+.feature-item>span{
+    float: left;
+}
+.feature-item i{
+    font-size: 48px;
+    vertical-align: top;
+}
+.feature-item-content{
+    overflow: hidden;
+}
+.feature-item-title{
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 30px;
 }
