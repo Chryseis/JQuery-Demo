@@ -27,13 +27,13 @@ ul, li {
     background-size:cover;
 }
 .nav-head{
-    width: 1200px;
+    width: 75%;
     margin: 0 auto;
     padding-top: 50px;
     border-bottom: 1px solid #fff;
 }
 .nav-body{
-    width: 1400px;
+    width: 75%;
     margin: 0 auto;
 }
 .nav-title{
@@ -81,7 +81,7 @@ ul, li {
     padding: 50px 0;
 }
 .service-title{
-    width: 1200px;
+    width: 75%;
     margin: 0 auto;
     text-align: center;
     font-size: 30px;
@@ -97,7 +97,7 @@ ul, li {
     border-bottom: 3px solid #ff9900;
 }
 .service-wrapper{
-    width: 1200px;
+    width: 75%;
     margin: 0 auto;
     padding: 50px 0;
 }
@@ -124,7 +124,7 @@ ul, li {
     background-color: #fff;
 }
 .middlewarre-wrapper{
-    width: 1200px;
+    width: 75%;
     margin: 0 auto;
     padding:  80px 0;
     box-sizing: border-box;
@@ -186,7 +186,7 @@ ul, li {
     padding: 50px 0;
 }
 .feature-title{
-    width: 1200px;
+    width: 75%;
     margin: 0 auto;
     text-align: center;
     font-size: 30px;
@@ -200,7 +200,7 @@ ul, li {
     border-bottom: 3px solid #ff9900;
 }
 .feature-kinds{
-    width: 1200px;
+    width: 75%;
     margin: 50px auto;
 
 }
