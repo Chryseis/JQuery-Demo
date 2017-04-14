@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .slider-wrapper{
+            margin: 0 auto;
+            width: 600px;
+            height: 100%;
+            position: relative;
+        }
+        .slider-wrapper img{
+            width: 600px;
+            height: 400px;
+        }
+        .slider-wrapper>div{
+            position: absolute;
+            top:50%;
+            width: 50px;
+            background-color:rgba(255,255,255,.5);
+            transform:translateY(-50%);
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .prev{
+            left:0;
+        }
+        .next{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="slider-wrapper">
+    <ul>
+        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+    </ul>
+    <div class="prev">&lt;</div>
+    <div class="next">&gt;</div>
+</div>
+</body>
+<script src="./lib/jquery-3.2.1.min.js"></script>
+<script>
+    $(function () {
+        var id=setInterval(function () {
+            $('.next').click();
+        },1000)
+
+        var imgArray=['./image/1.jpg','./image/2.jpg','./image/3.jpg','./image/4.jpg','./image/5.jpg'];
+        $('.prev').click(function () {
+            var currentIndex= $(this).siblings('img').data('index');
+            var prevIndex=currentIndex!=0?currentIndex-1:4;
+            $(this).siblings('img').attr('src',imgArray[prevIndex]).data('index',prevIndex);
+        });
+        $('.next').click(function () {
+            var currentIndex= $(this).siblings('img').data('index');
+            var nextIndex=currentIndex!=4?currentIndex+1:0;
+            $(this).siblings('img').attr('src',imgArray[nextIndex]).data('index',nextIndex);
+        })
+
+
+    })
+</script>
+</html>

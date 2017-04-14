@@ -125,9 +125,11 @@
 <div id="editor" style="height: 500px;">
 </div>
 </body>
-<script src="./lib/jquery.min.js"></script>
+<script src="./lib/jquery.js"></script>
 <script src="lib/quill.min.js"></script>
 <script src="./lib/webuploader.custom.min.js"></script>
+<script src="lib/fetch.js"></script>
+<script src="lib/promise-6.1.0.js"></script>
 <script>
     $(function () {
         var toolbarOptions = ['bold', 'italic', 'link', 'image', {'header': [1, 2, 3, 4, 5, 6, false]}];
@@ -154,6 +156,38 @@
         $('.ql-emoji').click(function () {
             $('.chat-emoji').hasClass('hidden') ? $('.chat-emoji').removeClass('hidden') : $('.chat-emoji').addClass('hidden');
         });
+
+//        $.ajax({
+//            url:'http://tigrex:1023/user/getuser',
+//            type:'get',
+//            dataType:'json',
+//            data:{
+//                userId: 1,
+//                createUser: 'allenfeng',
+//                createUserName: '哈哈',
+//                token: 'mintcode'
+//            }
+//        }).success(function (res) {
+//
+//        })
+
+//        fetch('./image/nav-logo.png').then(function(response) {
+//            return response.blob();
+//        }).then(function(response) {
+//            debugger;
+//            var objectURL = URL.createObjectURL(response);
+////            myImage.src = objectURL;
+//        });
+
+        $.ajax({
+            url:'./image/nav-logo.png',
+            type:'get',
+            dataType:'blob'
+        }).success(function (res) {
+            debugger
+        }).error(function (res) {
+            debugger;
+        })
 
         var uploader=WebUploader.create({
             swf:'./js/Uploader.swf',
