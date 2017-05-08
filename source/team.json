@@ -1,0 +1,413 @@
+{
+  "result": "success",
+  "data": [
+    {
+      "team": "Zeus",
+      "teamCount": 1,
+      "teamId": 1,
+      "members": [
+        {
+          "name": "yanzeng",
+          "trueName": "Yan Zeng"
+        }
+      ]
+    },
+    {
+      "team": "Frostmourne",
+      "teamCount": 1,
+      "teamId": 3,
+      "members": [
+        {
+          "name": "yanzeng",
+          "name": "Yan Zeng"
+        }
+      ]
+    },
+    {
+      "team": "Baymax",
+      "teamCount": 11,
+      "teamId": 17,
+      "members": [
+        {
+          "name": "felixwan",
+          "trueName": "Felix Wan"
+        },
+        {
+          "name": "sidhu",
+          "trueName": "Sid Hu"
+        },
+        {
+          "name": "verachen",
+          "trueName": "Vera Chen"
+        },
+        {
+          "name": "jasonwang",
+          "trueName": "Jason Wang"
+        },
+        {
+          "name": "rainyxie",
+          "trueName": "Rainy Xie"
+        },
+        {
+          "name": "miaye",
+          "trueName": "Mia Ye"
+        },
+        {
+          "name": "kevinwang",
+          "trueName": "Kevin Wang"
+        },
+        {
+          "name": "julyyu",
+          "trueName": "July Yu"
+        },
+        {
+          "name": "allenfeng",
+          "trueName": "Allen Feng"
+        },
+        {
+          "name": "fayhe",
+          "trueName": "Fay He"
+        },
+        {
+          "name": "wallacetang",
+          "trueName": "Wallace Tang"
+        }
+      ]
+    },
+    {
+      "team": "Avatar",
+      "teamCount": 12,
+      "teamId": 19,
+      "members": [
+        {
+          "name": "remonlv",
+          "trueName": "Remon Lv"
+        },
+        {
+          "name": "sunnyzhang",
+          "trueName": "Sunny Zhang"
+        },
+        {
+          "name": "boydxu",
+          "trueName": "Boyd Xu"
+        },
+        {
+          "name": "arnoyao",
+          "trueName": "Arno Yao"
+        },
+        {
+          "name": "stephenhe",
+          "trueName": "Stephen He"
+        },
+        {
+          "name": "kylehe",
+          "trueName": "Kyle He"
+        },
+        {
+          "name": "mikedai",
+          "trueName": "Mike Dai"
+        },
+        {
+          "name": "aimeefeng",
+          "trueName": "Aimee Feng"
+        },
+        {
+          "name": "angelama",
+          "trueName": "Angela Ma"
+        },
+        {
+          "name": "cathychen",
+          "trueName": "Cathy Chen"
+        },
+        {
+          "name": "nealyao",
+          "trueName": "Neal Yao"
+        },
+        {
+          "name": "chacecao",
+          "trueName": "Chace Cao"
+        }
+      ]
+    },
+    {
+      "team": "Yasha",
+      "teamCount": 14,
+      "teamId": 20,
+      "members": [
+        {
+          "name": "robinlin",
+          "trueName": "Robin Lin"
+        },
+        {
+          "name": "edenliang",
+          "trueName": "Eden Liang"
+        },
+        {
+          "name": "emilyye",
+          "trueName": "Emily Ye"
+        },
+        {
+          "name": "yangshen",
+          "trueName": "Yang Shen"
+        },
+        {
+          "name": "kenshi",
+          "trueName": "Ken Shi"
+        },
+        {
+          "name": "carolxu",
+          "trueName": "Carol Xu"
+        },
+        {
+          "name": "mooreli",
+          "trueName": "Moore Li"
+        },
+        {
+          "name": "lamaryue",
+          "trueName": "Lamar Yue"
+        },
+        {
+          "name": "loomezhou",
+          "trueName": "Loome Zhou"
+        },
+        {
+          "name": "bennetwang",
+          "trueName": "Bennet Wang"
+        },
+        {
+          "name": "larryxu",
+          "trueName": "Larry Xu"
+        },
+        {
+          "name": "willwang",
+          "trueName": "Will Wang"
+        },
+        {
+          "name": "allenfeng",
+          "trueName": "Allen Feng"
+        },
+        {
+          "name": "ernestcheng",
+          "trueName": "Ernest Cheng"
+        }
+      ]
+    },
+    {
+      "team": "MHS",
+      "teamCount": 11,
+      "teamId": 22,
+      "members": [
+        {
+          "name": "tanpengsheng",
+          "trueName": "谭鹏生"
+        },
+        {
+          "name": "zhongbo",
+          "trueName": "钟波"
+        },
+        {
+          "name": "alexwang",
+          "trueName": "王光旭"
+        },
+        {
+          "name": "alvinshen",
+          "trueName": "Alvin Shen"
+        },
+        {
+          "name": "guosheng",
+          "trueName": "郭盛"
+        },
+        {
+          "name": "lukunlun",
+          "trueName": "路昆仑"
+        },
+        {
+          "name": "yinfei",
+          "trueName": "尹飞"
+        },
+        {
+          "name": "zhonghan",
+          "trueName": "钟汉"
+        },
+        {
+          "name": "snakezhao",
+          "trueName": "赵磊"
+        },
+        {
+          "name": "yuhaichao",
+          "trueName": "余海超"
+        },
+        {
+          "name": "daitingbo",
+          "trueName": "代廷波"
+        }
+      ]
+    },
+    {
+      "team": "Mustang",
+      "teamCount": 7,
+      "teamId": 23,
+      "members": [
+        {
+          "name": "yinquan",
+          "trueName": "殷全"
+        },
+        {
+          "name": "jiangxueping",
+          "trueName": "蒋雪萍"
+        },
+        {
+          "name": "zhengzhang",
+          "trueName": "张政"
+        },
+        {
+          "name": "alvinshen",
+          "trueName": "Alvin Shen"
+        },
+        {
+          "name": "yuxia",
+          "trueName": "余霞"
+        },
+        {
+          "name": "daitingbo",
+          "trueName": "代廷波"
+        },
+        {
+          "name": "duanjiamei",
+          "trueName": "段佳梅"
+        }
+      ]
+    },
+    {
+      "team": "QA",
+      "teamCount": 6,
+      "teamId": 25,
+      "members": [
+        {
+          "name": "hejuan",
+          "trueName": "何娟"
+        },
+        {
+          "name": "miaye",
+          "trueName": "Mia Ye"
+        },
+        {
+          "name": "weilinbo",
+          "trueName": "魏林波"
+        },
+        {
+          "name": "lamaryue",
+          "trueName": "Lamar Yue"
+        },
+        {
+          "name": "carolxu",
+          "trueName": "Carol Xu"
+        },
+        {
+          "name": "tangyi",
+          "trueName": "tangyi"
+        }
+      ]
+    },
+    {
+      "team": "Caduceus",
+      "teamCount": 1,
+      "teamId": 26,
+      "members": [
+        {
+          "name": "yanzeng",
+          "trueName": "Yan Zeng"
+        }
+      ]
+    },
+    {
+      "team": "Gulden",
+      "teamCount": 3,
+      "teamId": 27,
+      "members": [
+        {
+          "name": "bellliu",
+          "trueName": "Bell Liu"
+        },
+        {
+          "name": "bennetwang",
+          "trueName": "Bennet Wang"
+        },
+        {
+          "name": "summerli",
+          "trueName": "Summer Li"
+        }
+      ]
+    },
+    {
+      "team": "Stonecore",
+      "teamCount": 5,
+      "teamId": 28,
+      "members": [
+        {
+          "name": "remonlv",
+          "trueName": "Remon Lv"
+        },
+        {
+          "name": "angelama",
+          "trueName": "Angela Ma"
+        },
+        {
+          "name": "nealyao",
+          "trueName": "Neal Yao"
+        },
+        {
+          "name": "mikedai",
+          "trueName": "Mike Dai"
+        },
+        {
+          "name": "aimeefeng",
+          "trueName": "Aimee Feng"
+        }
+      ]
+    },
+    {
+      "team": "Poseidon",
+      "teamCount": 9,
+      "teamId": 29,
+      "members": [
+        {
+          "name": "remonlv",
+          "trueName": "Remon Lv"
+        },
+        {
+          "name": "angelama",
+          "trueName": "Angela Ma"
+        },
+        {
+          "name": "sunnyzhang",
+          "trueName": "Sunny Zhang"
+        },
+        {
+          "name": "boydxu",
+          "trueName": "Boyd Xu"
+        },
+        {
+          "name": "arnoyao",
+          "trueName": "Arno Yao"
+        },
+        {
+          "name": "stephenhe",
+          "trueName": "Stephen He"
+        },
+        {
+          "name": "kylehe",
+          "trueName": "Kyle He"
+        },
+        {
+          "name": "chacecao",
+          "trueName": "Chace Cao"
+        },
+        {
+          "name": "nealyao",
+          "trueName": "Neal Yao"
+        }
+      ]
+    }
+  ]
+}

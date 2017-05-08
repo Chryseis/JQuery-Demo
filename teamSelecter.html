@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        .select-input {
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 2px 2px;
+            width: 30%;
+        }
+
+        .tag {
+            background-color: #00b7ee;
+            color: azure;
+            line-height: 25px;
+            float: left;
+            margin: 0 2px;
+            padding: 0 1px
+        }
+
+        .tag > i {
+            cursor: pointer;
+        }
+
+        .team-container {
+            margin-left: 2px;
+            width: 30%;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .member-container {
+            margin-left: 20px;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="css/fontello.css">
+</head>
+<body>
+<div class="select-input clearfix">
+    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+</div>
+<ul class="team-container">
+</ul>
+</body>
+<script type="text/html">
+    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+</script>
+<script type="text/html" id="tmpl">
+    <li class="team"><i class="icon-glyph-166"></i><input type="checkbox" data-code="{{= teamId}}"/><span>{{= team}}</span>
+        <ul class="member-container">
+            {{each(i,member) members}}
+                <li class="member"><input data-code="{{= name}}"
+                        type="checkbox"/><span>{{= trueName}}</span>
+                </li>
+            {{/each}}
+        </ul>
+    </li>
+</script>
+<script src="lib/jquery.js"></script>
+<script src="lib/jquery.tmpl.js"></script>
+<script>
+    $(function () {
+        var members=[];
+
+        $.ajax({
+            url:'./source/team.json',
+            type:'get',
+            dataType:'json'
+        }).success(function (res) {
+            $('.team-container').html($('#tmpl').tmpl(res.data));
+        })
+
+        $('.team-container').on('click','i',function () {
+            if($(this).hasClass('icon-glyph-166')){
+                $(this).removeClass('icon-glyph-166').addClass('icon-glyph-165').siblings('.member-container').show();
+            }else{
+                $(this).removeClass('icon-glyph-165').addClass('icon-glyph-166').siblings('.member-container').hide();
+            }
+        })
+
+        $('.team-container').on('click','.member input',function () {
+            debugger;
+            members.push($(this).data('code'));
+        })
+
+    })
+</script>
+</html>

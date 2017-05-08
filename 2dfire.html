@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body{
-            font-family: 'Microsoft YaHei',Arial,sans-serif;
+        *{
+            margin: 0;
+            padding: 0;
         }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+
         .clearfix:before, .clearfix:after {
             content: "";
             display: table;
@@ -23,76 +29,97 @@
         ul, li {
             list-style: none;
         }
-        .store-wrapper{
+
+        .store-wrapper {
             background-image: url('./image/dark.jpg');
             background-size: cover;
             width: 100%;
             height: 100%;
             text-align: center;
-            color:#ffffff;
-            position: relative;
+            color: #ffffff;
+            position: fixed;
         }
-        .back{
+
+        .back {
             position: absolute;
             width: 50px;
             height: 50px;
-            background-color: rgb(111,107,101);
+            background-color: rgb(111, 107, 101);
             font-size: 25px;
             color: #ffffff;
             border-radius: 50%;
             line-height: 50px;
-            top:20px;
-            left:7px
+            top: 20px;
+            left: 7px
         }
-        .customer-avatar{
+
+        .customer-avatar {
             padding: 30px 0 9px 0;
         }
-        .customer-avatar img{
+
+        .customer-avatar img {
             width: 120px;
             height: 120px;
             border: solid 5px #ffffff;
             border-radius: 50%;
         }
-        .customer-name{
-            font-size:33px ;
+
+        .customer-name {
+            font-size: 33px;
         }
-        .customer-level{
+
+        .customer-level {
             font-size: 28px;
         }
-        .customer-summary{
-            color: rgb(128,125,121);
+
+        .customer-summary {
+            color: rgb(128, 125, 121);
         }
-        .customer-detail-container{
-            background-color:rgba(58,53,49,.3);
-            border:solid 2px rgb(83,77,75);
+
+        .customer-detail-container {
+            background-color: rgba(58, 53, 49, .3);
+            border: solid 2px rgb(83, 77, 75);
             border-radius: 3px;
-            width: 90%;
-            margin: 0 auto;
             line-height: 50px;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
-        .how-to-grow{
+
+        .how-to-grow {
             float: left;
             width: 50%;
-            border-right: 1px solid rgb(83,77,75);
+            border-right: 1px solid rgb(83, 77, 75);
             box-sizing: border-box;
             position: relative;
         }
-        .grow-detail{
+
+        .grow-detail {
             float: left;
             width: 50%;
             box-sizing: border-box;
             position: relative;
         }
-        .entry{
+
+        .entry {
             position: absolute;
-            top:0%;
-            right:10px;
+            top: 0%;
+            right: 10px;
             cursor: pointer;
         }
-        .store-v5-rights{
+
+        .store-v5-rights {
             margin-top: 30px;
             font-size: 30px;
             font-weight: bolder;
+        }
+
+        .store-level-list {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .store-level {
+            float: left
         }
     </style>
 </head>
@@ -104,19 +131,38 @@
     <div class="customer-level">我当前的级别是：</div>
     <div class="customer-summary">我在本店的成长值：4506分,升到下一级还需成长值：494分</div>
     <div class="customer-detail-container clearfix">
-        <div class="how-to-grow">如何获取成长值 <div class="entry">&gt;</div></div>
-        <div class="grow-detail">查看我的成长值明细<div class="entry">&gt;</div></div>
+        <div class="how-to-grow">如何获取成长值
+            <div class="entry">&gt;</div>
+        </div>
+        <div class="grow-detail">查看我的成长值明细
+            <div class="entry">&gt;</div>
+        </div>
     </div>
     <div class="store-v5-rights">
         本店V5特权
     </div>
-<ul class="store-level-list">
-    <li class="store-level"></li>
-    <li class="store-level"></li>
-    <li class="store-level"></li>
-    <li class="store-level"></li>
-    <li class="store-level"></li>
-</ul>
+    <ul class="store-level-list clearfix">
+        <li class="store-level">
+            <div class="level">V1</div>
+            <div class="level-name">食神</div>
+        </li>
+        <li class="store-level">
+            <div class="level">V1</div>
+            <div class="level-name">食神</div>
+        </li>
+        <li class="store-level">
+            <div class="level">V1</div>
+            <div class="level-name">食神</div>
+        </li>
+        <li class="store-level">
+            <div class="level">V1</div>
+            <div class="level-name">食神</div>
+        </li>
+        <li class="store-level">
+            <div class="level">V1</div>
+            <div class="level-name">食神</div>
+        </li>
+    </ul>
 </div>
 </body>
 </html>
