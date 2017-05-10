@@ -36,12 +36,10 @@
             })
         }
 
+        //default values render
         members&&members.length>0&&_checkRender();
 
-        self.on('click', '.select-input', function () {
-            $('.team-container').show();
-        })
-
+        //delete member
         self.on('click', '.handle', function (e) {
             e.stopPropagation();
             var code = $(this).data('code');
@@ -53,6 +51,7 @@
             })
         })
 
+        //toggle event
         self.on('click', '.toggle', function () {
             if ($(this).hasClass('icon-glyph-166')) {
                 $(this).removeClass('icon-glyph-166').addClass('icon-glyph-165').siblings('.member-container').show();
@@ -61,6 +60,7 @@
             }
         })
 
+        //team check event
         self.on('click', '.team-check', function (e) {
             e.stopPropagation();
             var $check = $(this);
@@ -82,6 +82,7 @@
             _checkRender();
         })
 
+        //member check event
         self.on('click', '.member-check', function (e) {
             e.stopPropagation();
             var $check = $(this);
@@ -96,6 +97,10 @@
                 })
             }
             _checkRender();
+        })
+
+        self.on('click', '.select-input', function () {
+            $('.team-container').show();
         })
 
         $('body').on('click', function (e) {

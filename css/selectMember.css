@@ -51,6 +51,8 @@ ul, ol {
     border: 1px solid;
     border-radius: 5px;
     display: none;
+    max-height: 300px;
+    overflow-y: scroll;
     /*position: absolute;*/
 }
 
