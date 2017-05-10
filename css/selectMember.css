@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.select-input {
+    border: 1px solid;
+    border-radius: 5px;
+    /*padding: 2px 2px;*/
+    width: 30%;
+    min-height: 32px;
+    line-height: 28px;
+    /*position: relative;*/
+}
+
+.tag {
+    background-color: #00b7ee;
+    color: azure;
+    line-height: 25px;
+    float: left;
+    margin: 0 2px;
+    padding: 0 1px;
+    border-radius: 3px;
+    margin: 4px 0 4px 4px;
+}
+
+.tag > i {
+    cursor: pointer;
+}
+
+.team-container {
+    margin-left: 2px;
+    width: 30%;
+    border: 1px solid;
+    border-radius: 5px;
+    display: none;
+    /*position: absolute;*/
+}
+
+.member-container {
+    margin-left: 22px;
+    display: none;
+}

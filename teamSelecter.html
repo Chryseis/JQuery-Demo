@@ -29,8 +29,11 @@
         .select-input {
             border: 1px solid;
             border-radius: 5px;
-            padding: 2px 2px;
+            /*padding: 2px 2px;*/
             width: 30%;
+            min-height: 32px;
+            line-height: 28px;
+            /*position: relative;*/
         }
 
         .tag {
@@ -39,7 +42,9 @@
             line-height: 25px;
             float: left;
             margin: 0 2px;
-            padding: 0 1px
+            padding: 0 1px;
+            border-radius: 3px;
+            margin: 4px 0 4px 4px;
         }
 
         .tag > i {
@@ -51,64 +56,140 @@
             width: 30%;
             border: 1px solid;
             border-radius: 5px;
+            display: none;
+            /*position: absolute;*/
         }
+
         .member-container {
-            margin-left: 20px;
+            margin-left: 22px;
             display: none;
         }
     </style>
     <link rel="stylesheet" href="css/fontello.css">
 </head>
 <body>
-<div class="select-input clearfix">
-    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
-    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
-    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+<div class="select-member">
+    <div class="select-input clearfix">
+    </div>
+    <ul class="team-container">
+    </ul>
 </div>
-<ul class="team-container">
-</ul>
 </body>
-<script type="text/html">
-    <div class="tag"><span>hahaha</span><i class="icon-glyph-167"></i></div>
+<script type="text/html" id="selectTmpl">
+    <div class="tag"><span>{{= value}}</span><i class="icon-glyph-167" data-code="{{= code}}"></i></div>
 </script>
 <script type="text/html" id="tmpl">
-    <li class="team"><i class="icon-glyph-166"></i><input type="checkbox" data-code="{{= teamId}}"/><span>{{= team}}</span>
+    <li class="team"><i class="icon-glyph-166"></i><input class="team-check" type="checkbox" data-code="{{= teamId}}"
+                                                          data-value="{{= team}}"/><span>{{= team}}</span>
         <ul class="member-container">
             {{each(i,member) members}}
-                <li class="member"><input data-code="{{= name}}"
-                        type="checkbox"/><span>{{= trueName}}</span>
-                </li>
+            <li class="member"><input class="member-check" data-code="{{= name}}" data-value="{{= trueName}}"
+                                      type="checkbox"/><span>{{= trueName}}</span>
+            </li>
             {{/each}}
         </ul>
     </li>
 </script>
 <script src="lib/jquery.js"></script>
 <script src="lib/jquery.tmpl.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script src="lib/handlebars-v4.0.5.js"></script>
 <script>
     $(function () {
-        var members=[];
+        var members = [];
 
-        $.ajax({
-            url:'./source/team.json',
-            type:'get',
-            dataType:'json'
-        }).success(function (res) {
-            $('.team-container').html($('#tmpl').tmpl(res.data));
+        var selectTmpl = '{{#members}}<div class="tag"><span>{{value}}</span><i class="handle icon-glyph-167" data-code="{{code}}"></i></div>{{/members}}';
+
+        var tmpl = '{{#team}}<li class="team"><i class="toggle icon-glyph-166"></i><input class="team-check" type="checkbox" data-code="{{teamId}}" data-value="{{team}}"/><span>{{team}}</span>\
+           <ul class="member-container">{{#members}}\
+        <li class="member"><input class="member-check" data-code="{{name}}" data-value="{{trueName}}"type="checkbox"/><span>{{trueName}}</span>\
+      </li> {{/members}}</ul>\
+      </li>{{/team}}';
+
+        var selectTemplate=Handlebars.compile(selectTmpl);
+
+        var teamTemplate=Handlebars.compile(tmpl);
+
+        $('.select-input').click(function () {
+            $('.team-container').show();
         })
 
-        $('.team-container').on('click','i',function () {
-            if($(this).hasClass('icon-glyph-166')){
+        $.ajax({
+            url: './source/team.json',
+            type: 'get',
+            dataType: 'json'
+        }).success(function (res) {
+            //$('.team-container').html($('#tmpl').tmpl(res.data));
+            $('.team-container').html(teamTemplate({team:res.data}));
+        })
+
+        $('.select-input').on('click', '.handle', function (e) {
+            e.stopPropagation();
+            var code = $(this).data('code');
+            $(this).parent().remove();
+            $('input[data-code="' + code + '"]').prop('checked', false);
+            $('input[data-code="' + code + '"]').parents('.team').find('.team-check').prop('checked', false)
+            _.remove(members, function (item) {
+                return item.code == code;
+            })
+        })
+
+        $('.team-container').on('click', '.toggle', function () {
+            if ($(this).hasClass('icon-glyph-166')) {
                 $(this).removeClass('icon-glyph-166').addClass('icon-glyph-165').siblings('.member-container').show();
-            }else{
+            } else {
                 $(this).removeClass('icon-glyph-165').addClass('icon-glyph-166').siblings('.member-container').hide();
             }
         })
 
-        $('.team-container').on('click','.member input',function () {
-            debugger;
-            members.push($(this).data('code'));
+        $('.team-container').on('click', '.team-check', function (e) {
+            e.stopPropagation();
+            var $check = $(this);
+            var children = $check.parent().find('.member-check');
+            if ($check.prop('checked')) {
+                children.prop('checked', true);
+                $.each(children, function (index, item) {
+                    members.push({code: $(item).data('code'), value: $(item).data('value')})
+                })
+            } else {
+                children.prop('checked', false);
+                $.each(children, function (index, item) {
+                    _.remove(members, function (itemChild) {
+                        return itemChild.code == $(item).data('code');
+                    })
+                })
+            }
+            //$('.select-input').html($('#selectTmpl').tmpl(members));
+            $('.select-input').html(selectTemplate({members:members}));
         })
 
+        $('.team-container').on('click', '.member-check', function (e) {
+            e.stopPropagation();
+            var $check = $(this);
+            if ($check.prop('checked')) {
+                $.each($check.parents('.member-container').find('input'), function (index, item) {
+                    if (!$(item).prop('checked')) {
+                        $check.parents('.team').find('.team-check').prop('checked', false);
+                    } else {
+                        $check.parents('.team').find('.team-check').prop('checked', true);
+                    }
+                })
+                members.push({code: $check.data('code'), value: $check.data('value')});
+            } else {
+                $check.parents('.team').find('.team-check').prop('checked', false);
+                _.remove(members, function (item) {
+                    return item.code == $check.data('code');
+                })
+            }
+            //$('.select-input').html($('#selectTmpl').tmpl(members));
+            $('.select-input').html(selectTemplate({members:members}));
+        })
+
+        $('body').on('click', function (e) {
+            if (!$.contains($('.select-member').get(0), e.target)) {
+                $('.team-container').hide();
+            }
+        })
     })
 </script>
 </html>

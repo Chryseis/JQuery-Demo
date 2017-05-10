@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/selectMember.css">
+    <link rel="stylesheet" href="css/fontello.css">
+</head>
+<body>
+<div class="select-member">
+</div>
+</body>
+<script src="lib/jquery.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script src="lib/handlebars-v4.0.5.js"></script>
+<script src="js/selectMember.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url: './source/team.json',
+            type: 'get',
+            dataType: 'json'
+        }).success(function (res) {
+            //$('.team-container').html($('#tmpl').tmpl(res.data));
+            $('.select-member').selectMember(res.data);
+        })
+
+    })
+</script>
+</html>
