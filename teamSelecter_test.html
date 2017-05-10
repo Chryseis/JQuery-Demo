@@ -16,13 +16,64 @@
 <script src="js/selectMember.js"></script>
 <script>
     $(function () {
+        var members= [
+            {
+                "code": "remonlv",
+                "value": "Remon Lv"
+            },
+            {
+                "code": "sunnyzhang",
+                "value": "Sunny Zhang"
+            },
+            {
+                "code": "boydxu",
+                "value": "Boyd Xu"
+            },
+            {
+                "code": "arnoyao",
+                "value": "Arno Yao"
+            },
+            {
+                "code": "stephenhe",
+                "value": "Stephen He"
+            },
+            {
+                "code": "kylehe",
+                "value": "Kyle He"
+            },
+            {
+                "code": "mikedai",
+                "value": "Mike Dai"
+            },
+            {
+                "code": "aimeefeng",
+                "value": "Aimee Feng"
+            },
+            {
+                "code": "angelama",
+                "value": "Angela Ma"
+            },
+            {
+                "code": "cathychen",
+                "value": "Cathy Chen"
+            },
+            {
+                "code": "nealyao",
+                "value": "Neal Yao"
+            },
+            {
+                "code": "chacecao",
+                "value": "Chace Cao"
+            }
+        ];
+
         $.ajax({
             url: './source/team.json',
             type: 'get',
             dataType: 'json'
         }).success(function (res) {
             //$('.team-container').html($('#tmpl').tmpl(res.data));
-            $('.select-member').selectMember(res.data);
+            $('.select-member').selectMember(res.data,members);
         })
 
     })

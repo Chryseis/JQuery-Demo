@@ -2,9 +2,9 @@
  * Created by AllenFeng on 2017/5/10.
  */
 (function ($) {
-    $.fn.selectMember = function (teamArray) {
-        var $self = $(this),
-            members = [],
+    $.fn.selectMember = function (teamArray,members) {
+        var self = this,
+            members =members instanceof Array ?members:[];
             selectTmpl = '{{#members}}<div class="tag"><span>{{value}}</span><i class="handle icon-glyph-167" data-code="{{code}}"></i></div>{{/members}}',
             teamTmpl = '<ul class="team-container">{{#team}}<li class="team"><i class="toggle icon-glyph-166"></i><input class="team-check" type="checkbox" data-code="{{teamId}}" data-value="{{team}}"/><span>{{team}}</span>\
            <ul class="member-container">{{#members}}\
@@ -15,14 +15,34 @@
         var selectTemplate = Handlebars.compile(selectTmpl);
         var teamTemplate = Handlebars.compile(teamTmpl);
 
-        $self.append('<div class="select-input clearfix"></div>');
-        $self.append(teamTemplate({team: teamArray}));
+        self.append('<div class="select-input clearfix"></div>');
+        self.append(teamTemplate({team: teamArray}));
 
-        $self.on('click', '.select-input', function () {
+        function _checkRender() {
+            $('.select-input').html(selectTemplate({members:members}));
+            $('.team-container input').prop('checked',false);
+            members.map(function (item) {
+                $('.team-container input[data-code="' + item.code + '"]').prop('checked',true);
+            });
+            $.each($('.team'),function (index,item) {
+                var checked=true;
+                var children=$(item).find('.member-check');
+                $.each(children,function (index,child) {
+                    if(!$(child).prop('checked')){
+                        checked=false
+                    }
+                })
+                $(item).find('.team-check').prop('checked',checked);
+            })
+        }
+
+        members&&members.length>0&&_checkRender();
+
+        self.on('click', '.select-input', function () {
             $('.team-container').show();
         })
 
-        $self.on('click', '.handle', function (e) {
+        self.on('click', '.handle', function (e) {
             e.stopPropagation();
             var code = $(this).data('code');
             $(this).parent().remove();
@@ -33,7 +53,7 @@
             })
         })
 
-        $self.on('click', '.toggle', function () {
+        self.on('click', '.toggle', function () {
             if ($(this).hasClass('icon-glyph-166')) {
                 $(this).removeClass('icon-glyph-166').addClass('icon-glyph-165').siblings('.member-container').show();
             } else {
@@ -41,51 +61,45 @@
             }
         })
 
-        $self.on('click', '.team-check', function (e) {
+        self.on('click', '.team-check', function (e) {
             e.stopPropagation();
             var $check = $(this);
             var children = $check.parent().find('.member-check');
             if ($check.prop('checked')) {
-                children.prop('checked', true);
                 $.each(children, function (index, item) {
-                    members.push({code: $(item).data('code'), value: $(item).data('value')})
+                    var i=_.findIndex(members,function (item) {
+                        return item.code==$(item).data('code')
+                    })
+                    i<0&&members.push({code: $(item).data('code'), value: $(item).data('value')})
                 })
             } else {
-                children.prop('checked', false);
                 $.each(children, function (index, item) {
                     _.remove(members, function (itemChild) {
                         return itemChild.code == $(item).data('code');
                     })
                 })
             }
-            //$('.select-input').html($('#selectTmpl').tmpl(members));
-            $('.select-input').html(selectTemplate({members:members}));
+            _checkRender();
         })
 
-        $self.on('click', '.member-check', function (e) {
+        self.on('click', '.member-check', function (e) {
             e.stopPropagation();
             var $check = $(this);
             if ($check.prop('checked')) {
-                $.each($check.parents('.member-container').find('input'), function (index, item) {
-                    if (!$(item).prop('checked')) {
-                        $check.parents('.team').find('.team-check').prop('checked', false);
-                    } else {
-                        $check.parents('.team').find('.team-check').prop('checked', true);
-                    }
+                var i=_.findIndex(members,function (item) {
+                    return item.code==$check.data('code')
                 })
-                members.push({code: $check.data('code'), value: $check.data('value')});
+                i<0&&members.push({code: $check.data('code'), value: $check.data('value')});
             } else {
-                $check.parents('.team').find('.team-check').prop('checked', false);
                 _.remove(members, function (item) {
                     return item.code == $check.data('code');
                 })
             }
-            //$('.select-input').html($('#selectTmpl').tmpl(members));
-            $('.select-input').html(selectTemplate({members:members}));
+            _checkRender();
         })
 
         $('body').on('click', function (e) {
-            if (!$.contains($self.get(0), e.target)) {
+            if (!$.contains(self.get(0), e.target)) {
                 $('.team-container').hide();
             }
         })
