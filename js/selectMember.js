@@ -44,11 +44,12 @@
             e.stopPropagation();
             var code = $(this).data('code');
             $(this).parent().remove();
-            $('input[data-code="' + code + '"]').prop('checked', false);
-            $('input[data-code="' + code + '"]').parents('.team').find('.team-check').prop('checked', false)
+            // $('input[data-code="' + code + '"]').prop('checked', false);
+            // $('input[data-code="' + code + '"]').parents('.team').find('.team-check').prop('checked', false)
             _.remove(members, function (item) {
                 return item.code == code;
             })
+            _checkRender();
         })
 
         //toggle event
