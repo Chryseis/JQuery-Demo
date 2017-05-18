@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./css/fontello.css">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
@@ -30,137 +31,148 @@
             list-style: none;
         }
 
-        .store-wrapper {
+        .wrapper {
             background-image: url('./image/dark.jpg');
-            background-size: cover;
+            position: fixed;
             width: 100%;
             height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
             text-align: center;
-            color: #ffffff;
-            position: fixed;
+        }
+
+        .avatar {
+            margin-top: 50px;
+        }
+
+        .avatar img {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-sizing: border-box;
         }
 
         .back {
+            color: #ffffff;
             position: absolute;
+            display: inline-block;
             width: 50px;
             height: 50px;
-            background-color: rgb(111, 107, 101);
-            font-size: 25px;
+            border-radius: 50%;
+            background-color: rgb(110, 101, 99);
+            font-size: 20px;
+            top: 30px;
+            left: 15px;
+            line-height: 45px;
+        }
+
+        p {
             color: #ffffff;
-            border-radius: 50%;
-            line-height: 50px;
-            top: 20px;
-            left: 7px
         }
 
-        .customer-avatar {
-            padding: 30px 0 9px 0;
-        }
-
-        .customer-avatar img {
-            width: 120px;
-            height: 120px;
-            border: solid 5px #ffffff;
-            border-radius: 50%;
-        }
-
-        .customer-name {
-            font-size: 33px;
-        }
-
-        .customer-level {
-            font-size: 28px;
-        }
-
-        .customer-summary {
-            color: rgb(128, 125, 121);
-        }
-
-        .customer-detail-container {
-            background-color: rgba(58, 53, 49, .3);
-            border: solid 2px rgb(83, 77, 75);
-            border-radius: 3px;
-            line-height: 50px;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-
-        .how-to-grow {
-            float: left;
-            width: 50%;
-            border-right: 1px solid rgb(83, 77, 75);
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .grow-detail {
-            float: left;
-            width: 50%;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .entry {
-            position: absolute;
-            top: 0%;
-            right: 10px;
-            cursor: pointer;
-        }
-
-        .store-v5-rights {
-            margin-top: 30px;
+        .user-name {
             font-size: 30px;
-            font-weight: bolder;
         }
 
-        .store-level-list {
-            margin: 0 auto;
-            width: 100%;
+        .user-level {
+            font-size: 20px;
+            margin-top: 10px;
         }
 
-        .store-level {
-            float: left
+        .user-detail {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .tool {
+            border: 1px solid rgb(99, 94, 92);
+            color: #ffffff;
+            margin: 10px 10px 30px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .tool>span{
+            display: inline-block;
+            box-sizing: border-box;
+            width: 49%;
+            padding: 15px 0 15px 10px;
+            position: relative;
+        }
+        .grow-detail{
+            border-left: 1px solid rgb(99, 94, 92);
+        }
+        .tool i{
+            position: absolute;
+            top:30%;
+            right:5px;
+        }
+        .store-rights{
+            margin-top: 60px;
+            font-size: 30px;
+        }
+        .level-wrapper{
+            padding: 0 20px;
+        }
+        .level{
+            float: left;
+        }
+        .level p:first-child{
+            border: 1px solid #ffffff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .link{
+            width: 10px;
+            border: 2px solid #ffffff;
+            float: left;
         }
     </style>
 </head>
 <body>
-<div class="store-wrapper">
-    <div class="back">&lt;</div>
-    <div class="customer-avatar"><img src="./image/avatar.jpg" alt=""></div>
-    <div class="customer-name">蓝精灵</div>
-    <div class="customer-level">我当前的级别是：</div>
-    <div class="customer-summary">我在本店的成长值：4506分,升到下一级还需成长值：494分</div>
-    <div class="customer-detail-container clearfix">
-        <div class="how-to-grow">如何获取成长值
-            <div class="entry">&gt;</div>
-        </div>
-        <div class="grow-detail">查看我的成长值明细
-            <div class="entry">&gt;</div>
-        </div>
+<div class="wrapper">
+    <span class="back">&lt;</span>
+    <div class="avatar"><img src="./image/avatar.jpg" alt=""></div>
+    <p class="user-name">蓝精灵</p>
+    <p class="user-level">我当前的级别是：<i class="icon-glyph-1"></i></p>
+    <p class="user-detail">我在本店的成长值：4506分，升到下一级还需成长值：494分</p>
+    <div class="tool">
+        <span class="grow-value">如何获取成长值<i>&gt;</i></span>
+        <span class="grow-detail">查看我的成长值明细<i>&gt;</i></span>
     </div>
-    <div class="store-v5-rights">
-        本店V5特权
-    </div>
-    <ul class="store-level-list clearfix">
-        <li class="store-level">
-            <div class="level">V1</div>
-            <div class="level-name">食神</div>
+    <p class="store-rights">本店V5特权</p>
+    <ul class="level-wrapper">
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
         </li>
-        <li class="store-level">
-            <div class="level">V1</div>
-            <div class="level-name">食神</div>
+        <li class="link"></li>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
         </li>
-        <li class="store-level">
-            <div class="level">V1</div>
-            <div class="level-name">食神</div>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
         </li>
-        <li class="store-level">
-            <div class="level">V1</div>
-            <div class="level-name">食神</div>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
         </li>
-        <li class="store-level">
-            <div class="level">V1</div>
-            <div class="level-name">食神</div>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
+        </li>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
+        </li>
+        <li class="level">
+            <p>VO</p>
+            <p>吃货</p>
         </li>
     </ul>
 </div>

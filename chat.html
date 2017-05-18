@@ -239,7 +239,7 @@
 <script>
     $(function () {
         //var userId = 'ZmOaK1ylZehx2qX1'; //mt
-         var userId='ZBAYNbRqYAUBbjDE3';//totoro
+        var userId = 'ZBAYNbRqYAUBbjDE3';//totoro
 
         var chatStore = {
             threadList: [],
@@ -377,9 +377,9 @@
                     } else {
                         if (_.find(json.data.memberList, {'userName': userId}) != null) {
                             return _.assign({},
-                                    otherValue, {
-                                        memberList: json.data.memberList
-                                    })
+                                otherValue, {
+                                    memberList: json.data.memberList
+                                })
                         }
                     }
                 }
@@ -417,8 +417,8 @@
         //处理消息
         function dealPollMsg(index, msg) {
             if (index >= msg.length) {
-                chatStore.threadList.sort(function (a,b) {
-                    return b.timer>a.timer
+                chatStore.threadList.sort(function (a, b) {
+                    return b.timer > a.timer
                 })
                 renderThread(chatStore.threadList);
                 //修改最大消息id
@@ -442,10 +442,10 @@
             } else {
                 //修改thread
                 currentThread.info = {extend: item.info, content: item.content, type: item.type, myId: userId};
-                currentThread.timer=item.createDate;
-                currentThread.count=myself?0:currentThread.count+1;
+                currentThread.timer = item.createDate;
+                currentThread.count = myself ? 0 : currentThread.count + 1;
             }
-            dealPollMsg(index+1,msg);
+            dealPollMsg(index + 1, msg);
         }
 
         //加载历史记录
@@ -459,7 +459,7 @@
                     "appToken": "verify-code",
                     "from": userId,
                     "to": item.sessionName,
-                    "limit":30,
+                    "limit": 30,
                     "endTimestamp": -1
                 })
             })
