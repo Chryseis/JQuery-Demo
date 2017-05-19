@@ -88,47 +88,72 @@
         .tool {
             border: 1px solid rgb(99, 94, 92);
             color: #ffffff;
-            margin: 10px 10px 30px 0;
             box-sizing: border-box;
             border-radius: 5px;
             text-align: left;
         }
-        .tool>span{
+
+        .tool > span {
             display: inline-block;
             box-sizing: border-box;
             width: 49%;
             padding: 15px 0 15px 10px;
             position: relative;
         }
-        .grow-detail{
+
+        .grow-detail {
             border-left: 1px solid rgb(99, 94, 92);
         }
-        .tool i{
+
+        .tool i {
             position: absolute;
-            top:30%;
-            right:5px;
+            top: 30%;
+            right: 5px;
         }
-        .store-rights{
+
+        .store-rights {
             margin-top: 60px;
             font-size: 30px;
         }
-        .level-wrapper{
+
+        .level-wrapper {
             padding: 0 20px;
         }
-        .level{
+
+        .level {
             float: left;
         }
-        .level p:first-child{
+
+        .level p:first-child {
             border: 1px solid #ffffff;
             border-radius: 50%;
             width: 30px;
             height: 30px;
             line-height: 30px;
         }
-        .link{
-            width: 10px;
+
+        .container {
+            padding: 0 10px;
+            margin-top: 10px;
+        }
+
+        .link {
+            position: absolute;
+            width: 100%;
             border: 2px solid #ffffff;
+            z-index: -10;
+        }
+
+        .box {
+            display: table;
+            width: 33%;
+            height: 200px;
+            border: 1px solid #ffffff;
             float: left;
+        }
+        .box > div{
+            display: table-cell;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -139,42 +164,86 @@
     <p class="user-name">蓝精灵</p>
     <p class="user-level">我当前的级别是：<i class="icon-glyph-1"></i></p>
     <p class="user-detail">我在本店的成长值：4506分，升到下一级还需成长值：494分</p>
-    <div class="tool">
-        <span class="grow-value">如何获取成长值<i>&gt;</i></span>
-        <span class="grow-detail">查看我的成长值明细<i>&gt;</i></span>
+    <div class="container">
+        <div class="tool">
+            <span class="grow-value">如何获取成长值<i>&gt;</i></span>
+            <span class="grow-detail">查看我的成长值明细<i>&gt;</i></span>
+        </div>
     </div>
     <p class="store-rights">本店V5特权</p>
-    <ul class="level-wrapper">
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="link"></li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-        <li class="level">
-            <p>VO</p>
-            <p>吃货</p>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="link"></div>
+        <ul class="level-wrapper clearfix">
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+            <li class="level">
+                <p>VO</p>
+                <p>吃货</p>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <ul>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+            <li class="box">
+                <div>
+                    <i class="icon-glyph-8"></i>
+                    <p>会员卡</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
