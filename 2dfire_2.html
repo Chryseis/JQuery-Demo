@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'HiraginoSansGB-W3', Arial, sans-serif;
+        }
+
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .main-wrapper {
+            position: relative;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .main-bg-img {
+            background-image: url('./image/dark.jpg');
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 375px;
+            height: 603px;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .modal-container {
+            width: 375px;
+            height: 603px;
+            background-image: url('./image/2dfire/cloud-bg.png');
+            background-size: cover;
+            padding-top: 128px;
+            box-sizing: border-box;
+        }
+
+        .close-btn {
+            display: inline-block;
+            background-image: url('./image/2dfire/close-btn.png');
+            background-size: cover;
+            left: 167px;
+            bottom: 59px;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+        .store-title-icon {
+            background-image: url('./image/2dfire/default-meal.png');
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            margin-left: 48px;
+            border-radius: 4px;
+            float: left;
+        }
+
+        .store-title-name {
+            margin-left: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 20px;
+            vertical-align: super;
+        }
+
+        .store-advertise {
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 138px;
+        }
+
+        .store-advertise-detail {
+            margin: 0 85px;
+        }
+
+        .text {
+            font-size: 14px;
+            margin: 0 5px;
+        }
+
+        .num {
+            font-size: 22px;
+        }
+
+        .yuan {
+            font-size: 16px;
+            margin-left: 1px;
+        }
+
+        .store-advertise-more {
+            margin-top: 9px;
+            font-size: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .store-recharge {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .btn-recharge {
+            display: inline-block;
+            width: 150px;
+            background-image: url('./image/2dfire/get-card.png');
+            background-size: cover;
+            line-height: 26px;
+            color: #785c4d;
+            font-size: 12px;
+        }
+
+        .link {
+            margin: 12px 63px 0 63px;
+            background-color: #999999;
+            height: 1px;
+        }
+
+        .send-security {
+            font-size: 20px;
+            margin: 14px 137px 0;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+
+        .tag {
+            margin-top: 12px;
+            margin-left: 63px;
+            background-image: url('./image/2dfire/coupon-card.png');
+            background-size: cover;
+            width: 255px;
+            height: 73px;
+            position: relative;
+        }
+
+        .store-get {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .top-right-info {
+            position: absolute;
+            background-image: url('./image/2dfire/corner.png');
+            background-size: cover;
+            top: 0;
+            right: 0;
+            width: 39px;
+            height: 39px;
+        }
+        .tag{
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .top-right-info span {
+            color: #fff;
+            font-size: 9px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            display: block;
+            margin-left: 16.3px;
+            margin-top: 6px;
+        }
+        .left-info{
+            float: left;
+        }
+        .avatar{
+            width: 36px;
+            height: 36px;
+            float: left;
+            border-radius: 5px;
+        }
+        .avatar-detail{
+            overflow: hidden;
+            font-size: 14px;
+            padding-left: 7px;
+            font-weight: bold;
+        }
+        .avatar-detail .first{
+            color:#e02200 ;
+        }
+        .avatar-detail .second{
+            color: #333;
+        }
+        .time{
+            margin-top: 7px;
+            font-size: 10px;
+            color: #999;
+            line-height: 7px;
+        }
+        .price{
+            color:#E02200 ;
+            margin-top: 13px;
+            margin-bottom: 3px;
+            line-height: 22px;
+        }
+        .right-info{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="main-bg-img"></div>
+    <div class="modal-container">
+        <div class="store-title">
+            <span class="store-title-icon"></span>
+            <span class="store-title-name">绿茶湖滨店</span>
+        </div>
+        <div class="store-advertise">充值最划算</div>
+        <div class="store-advertise-detail">
+            <span class="text">充</span><span class="num">1000</span><span class="yuan">元</span><span
+                class="text">送</span><span class="num">120</span><span class="yuan">元</span>
+        </div>
+        <div class="store-advertise-more">
+            <p>充2000元送300元，充3000元送500元</p>
+        </div>
+        <div class="store-recharge"><a href="javascript:;" class="btn-recharge">零卡并充值</a></div>
+        <div class="link"></div>
+        <div class="send-security">老板发券啦</div>
+        <div class="tag clearfix">
+            <div class="left-info">
+                <img class="avatar" src="./image/avatar.jpg" alt="">
+                <div class="avatar-detail">
+                    <p class="first">单品现金劵</p>
+                    <p class="second">外婆红烧肉</p>
+                </div>
+                <p class="time">有效期：2016.3.5-2016.5.5</p>
+            </div>
+            <div class="right-info">
+                <p class="price"><span>￥</span><span style="font-size: 26px">50</span><span>.00</span></p>
+                <p class="time" style="line-height: 2px;">(仅外卖可用)</p>
+            </div>
+            <div class="top-right-info"><span>2张</span></div>
+        </div>
+        <div class="store-get"><a href="javascript:;" class="btn-recharge">共3张，马上去领取</a></div>
+    </div>
+    <a href="javascript:;" class="close-btn"></a>
+</div>
+</body>
+</html>
