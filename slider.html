@@ -4,72 +4,108 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        .slider-wrapper{
-            margin: 0 auto;
-            width: 600px;
-            height: 100%;
-            position: relative;
+
+        .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
         }
-        .slider-wrapper img{
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        /*.slider-wrapper{*/
+        /*margin: 0 auto;*/
+        /*width: 600px;*/
+        /*height: 100%;*/
+        /*position: relative;*/
+        /*}*/
+        /*.slider-wrapper img{*/
+        /*width: 600px;*/
+        /*height: 400px;*/
+        /*}*/
+        /*.slider-wrapper>div{*/
+        /*position: absolute;*/
+        /*top:50%;*/
+        /*width: 50px;*/
+        /*background-color:rgba(255,255,255,.5);*/
+        /*transform:translateY(-50%);*/
+        /*text-align: center;*/
+        /*line-height: 50px;*/
+        /*font-size: 20px;*/
+        /*cursor: pointer;*/
+        /*}*/
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .slider-wrapper {
             width: 600px;
             height: 400px;
+            overflow: hidden;
+            position: relative;
         }
-        .slider-wrapper>div{
+
+        .img-container {
             position: absolute;
-            top:50%;
-            width: 50px;
-            background-color:rgba(255,255,255,.5);
-            transform:translateY(-50%);
-            text-align: center;
-            line-height: 50px;
-            font-size: 20px;
-            cursor: pointer;
+            width: 1800px;
+            left: 0;
+            transition: all .3s;
         }
-        .prev{
-            left:0;
+
+        .img-container li {
+            float: left;
         }
-        .next{
-            right: 0;
+
+        .img-container img {
+            width: 600px;
+            height: 400px;
         }
     </style>
 </head>
 <body>
 <div class="slider-wrapper">
-    <ul>
-        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
-        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
-        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
-        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
-        <li><img src="./image/1.jpg" data-index="0" alt="image"></li>
+    <ul class="img-container clearfix">
+        <li><img src="http://www.hishop.com.cn/uploads/150914/21678-150914112244436.jpg" alt="image"></li>
+        <li><img src="http://imgsrc.baidu.com/imgad/pic/item/267f9e2f07082838b5168c32b299a9014c08f1f9.jpg" alt="image">
+        </li>
+        <li><img src="http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg" alt="image"></li>
     </ul>
-    <div class="prev">&lt;</div>
-    <div class="next">&gt;</div>
+</div>
+<div>
+    <button class="prev">prev</button>
+    <button class="next">next</button>
 </div>
 </body>
 <script src="./lib/jquery-3.2.1.min.js"></script>
 <script>
     $(function () {
-        var id=setInterval(function () {
-            $('.next').click();
-        },1000)
-
-        var imgArray=['./image/1.jpg','./image/2.jpg','./image/3.jpg','./image/4.jpg','./image/5.jpg'];
+        var i = 0;
+        var j = $('.img-container li').length;
         $('.prev').click(function () {
-            var currentIndex= $(this).siblings('img').data('index');
-            var prevIndex=currentIndex!=0?currentIndex-1:4;
-            $(this).siblings('img').attr('src',imgArray[prevIndex]).data('index',prevIndex);
-        });
-        $('.next').click(function () {
-            var currentIndex= $(this).siblings('img').data('index');
-            var nextIndex=currentIndex!=4?currentIndex+1:0;
-            $(this).siblings('img').attr('src',imgArray[nextIndex]).data('index',nextIndex);
+            i--;
+            i > 0 && $('.img-container').attr('style', 'left:' + i * 600 + 'px;');
         })
-
-
+        $('.next').click(function () {
+            i++;
+            i < j && $('.img-container').attr('style', 'left:-' + i * 600 + 'px;');
+        })
     })
 </script>
 </html>
