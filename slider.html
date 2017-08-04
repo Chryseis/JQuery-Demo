@@ -64,9 +64,8 @@
 
         .img-container {
             position: absolute;
-            width: 1800px;
-            left: 0;
-            transition: all .3s;
+            width: 3000px;
+            left: -600px;
         }
 
         .img-container li {
@@ -82,10 +81,18 @@
 <body>
 <div class="slider-wrapper">
     <ul class="img-container clearfix">
+        <li><img
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501836506152&di=e22c18ace1bfa222c0f8f8fa812af1b9&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D7813aa9fc3177f3e0439f44e18a651b2%2F6609c93d70cf3bc736e6f5c5db00baa1cd112a30.jpg"
+                alt="image"></li>
         <li><img src="http://www.hishop.com.cn/uploads/150914/21678-150914112244436.jpg" alt="image"></li>
-        <li><img src="http://imgsrc.baidu.com/imgad/pic/item/267f9e2f07082838b5168c32b299a9014c08f1f9.jpg" alt="image">
+        <li><img
+                src="http://b2-q.mafengwo.net/s6/M00/0A/AA/wKgB4lMC252ATNI5AAL1sxemShI18.jpeg?imageMogr2%2Fthumbnail%2F%211360x760r%2Fgravity%2FCenter%2Fcrop%2F%211360x760%2Fquality%2F90"
+                alt="image">
         </li>
-        <li><img src="http://pic71.nipic.com/file/20150610/13549908_104823135000_2.jpg" alt="image"></li>
+        <li><img
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1501836506152&di=e22c18ace1bfa222c0f8f8fa812af1b9&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D7813aa9fc3177f3e0439f44e18a651b2%2F6609c93d70cf3bc736e6f5c5db00baa1cd112a30.jpg"
+                alt="image"></li>
+        <li><img src="http://www.hishop.com.cn/uploads/150914/21678-150914112244436.jpg" alt="image"></li>
     </ul>
 </div>
 <div>
@@ -96,15 +103,27 @@
 <script src="./lib/jquery-3.2.1.min.js"></script>
 <script>
     $(function () {
-        var i = 0;
-        var j = $('.img-container li').length;
         $('.prev').click(function () {
-            i--;
-            i > 0 && $('.img-container').attr('style', 'left:' + i * 600 + 'px;');
+            var offset = $('.img-container').offset().left;
+            if(offset==-600){
+                $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
+                setTimeout(function () {
+                    $('.img-container').attr('style', 'left:-1800px;');
+                },300)
+            }else{
+                $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
+            }
         })
         $('.next').click(function () {
-            i++;
-            i < j && $('.img-container').attr('style', 'left:-' + i * 600 + 'px;');
+            var offset = $('.img-container').offset().left;
+            if(offset==-1800){
+                $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+                setTimeout(function () {
+                    $('.img-container').attr('style', 'left:-600px;');
+                },300)
+            }else{
+                $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+            }
         })
     })
 </script>
