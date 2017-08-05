@@ -60,6 +60,7 @@
             height: 400px;
             overflow: hidden;
             position: relative;
+            margin: 0 auto;
         }
 
         .img-container {
@@ -75,6 +76,31 @@
         .img-container img {
             width: 600px;
             height: 400px;
+        }
+
+        .btn{
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: rgba(119,136,153,.5);
+        }
+
+        .prev {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 20px;
+            height: 50px;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 20px;
+            height: 50px;
+            transform: translateY(-50%);
         }
     </style>
 </head>
@@ -94,35 +120,48 @@
                 alt="image"></li>
         <li><img src="http://www.hishop.com.cn/uploads/150914/21678-150914112244436.jpg" alt="image"></li>
     </ul>
-</div>
-<div>
-    <button class="prev">prev</button>
-    <button class="next">next</button>
+    <button class="btn prev">&lt;</button>
+    <button class="btn next">&gt;</button>
 </div>
 </body>
 <script src="./lib/jquery-3.2.1.min.js"></script>
 <script>
     $(function () {
+        var lock = true;
         $('.prev').click(function () {
-            var offset = $('.img-container').offset().left;
-            if(offset==-600){
-                $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
-                setTimeout(function () {
-                    $('.img-container').attr('style', 'left:-1800px;');
-                },300)
-            }else{
-                $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
+            var offset = $('.img-container').get(0).offsetLeft;
+            if (lock) {
+                lock = false;
+                if (offset == -600) {
+                    $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
+                    setTimeout(function () {
+                        $('.img-container').attr('style', 'left:-1800px;');
+                        lock = true;
+                    }, 300)
+                } else {
+                    $('.img-container').attr('style', 'left:' + (offset + 600) + 'px;transition: all .3s;');
+                    setTimeout(function () {
+                        lock = true
+                    }, 300)
+                }
             }
         })
         $('.next').click(function () {
-            var offset = $('.img-container').offset().left;
-            if(offset==-1800){
-                $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
-                setTimeout(function () {
-                    $('.img-container').attr('style', 'left:-600px;');
-                },300)
-            }else{
-                $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+            var offset = $('.img-container').get(0).offsetLeft;
+            if (lock) {
+                lock = false;
+                if (offset == -1800) {
+                    $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+                    setTimeout(function () {
+                        $('.img-container').attr('style', 'left:-600px;');
+                        lock = true
+                    }, 300)
+                } else {
+                    $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+                    setTimeout(function () {
+                        lock = true
+                    }, 300)
+                }
             }
         })
     })
