@@ -129,6 +129,7 @@
     $(function () {
         var lock = true;
         $('.prev').click(function () {
+            clearInterval(intervalId)
             var offset = $('.img-container').get(0).offsetLeft;
             if (lock) {
                 lock = false;
@@ -147,6 +148,7 @@
             }
         })
         $('.next').click(function () {
+            clearInterval(intervalId)
             var offset = $('.img-container').get(0).offsetLeft;
             if (lock) {
                 lock = false;
@@ -164,6 +166,25 @@
                 }
             }
         })
+
+       var intervalId= setInterval(function () {
+           var offset = $('.img-container').get(0).offsetLeft;
+           if (lock) {
+               lock = false;
+               if (offset == -1800) {
+                   $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+                   setTimeout(function () {
+                       $('.img-container').attr('style', 'left:-600px;');
+                       lock = true
+                   }, 300)
+               } else {
+                   $('.img-container').attr('style', 'left:' + (offset - 600) + 'px;transition: all .3s;');
+                   setTimeout(function () {
+                       lock = true
+                   }, 300)
+               }
+           }
+        },1000)
     })
 </script>
 </html>
