@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8" name="viewport"
+          content="width=device-width,initial-scale=1.0,maxinum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        .bg-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-image: url('./image/dark.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-image: url('./image/2dfire/spooler-bg.png');
+            background-size: 375px 667px;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .content {
+            width: 309px;
+            margin: 0 auto;
+            margin-top: 136px;
+        }
+
+        .content .store {
+            padding: 3px 15px 0 15px;
+            margin-bottom: 12px;
+        }
+
+        .content .store .logo {
+            display: inline-block;
+            margin-right: 5px;
+            background-color: #fff;
+            font-size: 10px;
+            color: #000;
+            border-radius: 4px;
+        }
+
+        .content .store .name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            line-height: 20px;
+        }
+
+        .content .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .content .voucher-list {
+            padding-left: 18px;
+            margin-bottom: 8px;
+        }
+
+        .content .voucher-list .voucher {
+            position: relative;
+            padding: 10px 7px 10px 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            background-image: url('./image/2dfire/coupon-card.png');
+            background-size: 255px 73px;
+            background-repeat: no-repeat;
+            width: 255px;
+            height: 73px;
+        }
+
+        .content .voucher-list .voucher:last-child {
+            margin-bottom: 0;
+        }
+
+        .content .voucher-list .voucher .voucher-info {
+            display: inline-block;
+            font-size: 0;
+        }
+
+        .content .voucher-list .voucher .voucher-info .info {
+            margin-bottom: 7px;
+        }
+
+        .content .voucher-list .voucher .voucher-info .avatar {
+            display: inline-block;
+            margin-right: 7px;
+            border-radius: 4px;
+        }
+
+        .content .voucher-list .voucher .voucher-info .name {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .content .voucher-list .voucher .voucher-info .name .voucher-name {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #e02200;
+        }
+
+        .content .voucher-list .voucher .voucher-info .name .dish-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .content .voucher-list .voucher .voucher-info .name .limit{
+            margin-top: 10px;
+            font-size: 10px;
+            color: #333333;
+        }
+
+        .content .voucher-list .voucher .voucher-info .time {
+            font-size: 10px;
+            color: #999;
+        }
+
+        .content .voucher-list .voucher .voucher-price {
+            float: right;
+            padding-top: 13px;
+            font-size: 0;
+        }
+
+        .content .voucher-list .voucher .voucher-price .price{
+            margin-bottom: 3px;
+        }
+
+        .content .voucher-list .voucher .voucher-price .price .unit {
+            font-size: 12px;
+            color: #e02200;
+        }
+
+        .content .voucher-list .voucher .voucher-price .price .int {
+            font-size: 26px;
+            color: #e02200;
+        }
+
+        .content .voucher-list .voucher .voucher-price .price .decimal {
+            font-size: 12px;
+            color: #e02200;
+        }
+
+        .content .voucher-list .voucher .voucher-price .tips {
+            font-size: 10px;
+            color: #333333;
+        }
+
+        .right-tips {
+            position: absolute;
+            display: inline-block;
+            background-image: url('./image/2dfire/corner.png');
+            top: 0;
+            right: 2px;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+        }
+
+        .right-tips .text{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            font-weight: 600;
+            color:#fff;
+            transform: rotate(45deg);
+        }
+
+        .remind {
+            font-size: 12px;
+            color: #333;
+            line-height: 16px;
+            text-align: center;
+        }
+
+        .btn.next {
+            margin: 0 auto;
+            margin-top: 17px;
+            background-image: url('./image/2dfire/get-card.png');
+            background-size: 150px 26px;
+            background-repeat: no-repeat;
+            width: 150px;
+            height: 26px;
+            font-size: 12px;
+            color:#785c4d;
+            line-height: 26px;
+            text-align: center;
+        }
+
+        .tool{
+            position: absolute;
+            top:0;
+            right: -23px;
+            padding: 5px 4px;
+            box-sizing: border-box;
+            background-image: url('./image/2dfire/wxcard.png');
+            background-size: 26px 73px;
+            background-repeat: no-repeat;
+            width: 26px;
+            height: 73px;
+            font-size: 10px;
+            color:#333;
+            text-align: center;
+        }
+
+        .close {
+            position: fixed;
+            left: 167px;
+            bottom: 59px;
+            background-image: url('./image/2dfire/close-btn.png');
+            background-size: 40px 40px;
+            background-repeat: no-repeat;
+            width: 40px;
+            height: 40px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="bg-img"></div>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="store">
+                <span class="logo">绿茶</span>
+                <span class="name">绿茶湖滨店</span>
+            </div>
+            <h1 class="title">恭喜您获得优惠券</h1>
+            <ul class="voucher-list">
+                <li class="voucher">
+                    <div class="voucher-info">
+                        <div class="info">
+                            <img class="avatar" src="./image/avatar.jpg" width="36px" height="36px"/>
+                            <span class="name">
+                                <div class="voucher-name">单品现金券</div>
+                                <div class="dish-name">外婆红烧肉</div>
+                            </span>
+                        </div>
+                        <div class="time">有效期:2016.3.5-2016.5.5</div>
+                    </div>
+                    <div class="voucher-price">
+                        <div class="price">
+                            <span class="unit">￥</span>
+                            <span class="int">50</span>
+                            <span class="decimal">.00</span>
+                        </div>
+                        <div class="tips">(仅外卖可用)</div>
+                    </div>
+                    <span class="right-tips"><span class="text">2张</span></span>
+                </li>
+                <li class="voucher">
+                    <div class="voucher-info">
+                        <div class="info">
+                            <span class="name">
+                                <div class="voucher-name">单品现金券</div>
+                                <div class="limit">外婆红烧肉</div>
+                            </span>
+                        </div>
+                        <div class="time">有效期:2016.3.5-2016.5.5</div>
+                    </div>
+                    <div class="voucher-price">
+                        <div class="price">
+                            <span class="unit">￥</span>
+                            <span class="int">500</span>
+                            <span class="decimal">.00</span>
+                        </div>
+                        <div class="tips">(仅外卖可用)</div>
+                    </div>
+                    <span class="right-tips"><span class="text">20张</span></span>
+                    <span class="tool">放入微信卡劵</span>
+                </li>
+            </ul>
+            <p class="remind">您本次充值金额为500元,</p>
+            <p class="remind">店家特赠您2张优惠券,欢迎您下次再来！</p>
+            <div class="btn next">查看优惠详情</div>
+        </div>
+    </div>
+    <div class="close"></div>
+</div>
+</body>
+</html>
