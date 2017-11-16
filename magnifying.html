@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            display: block;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<a id="box" href="./image/magnifying/05-big.jpg">
+    <img src="./image/magnifying/05.jpg" alt="">
+</a>
+<script src="lib/jquery-3.2.1.min.js"></script>
+<script src="./lib/jquery.enlarge.js"></script>
+<script>
+$(function () {
+    $('#box').enlarge({
+        shadecolor: "#FFD24D",
+        shadeborder: "#FF8000",
+        shadeopacity: 0.5,
+        cursor: "move",
+
+        layerwidth: 400,
+        layerheight: 300,
+        layerborder: "#DDD",
+        fade: true
+    })
+})
+</script>
+</body>
+</html>
