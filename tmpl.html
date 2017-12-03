@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib/jquery-ui.css">
+</head>
+<body>
+    <input type="text" id="haha">
+</body>
+<script type="text/html" id="test">
+    <input type="text" id="input">
+</script>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.tmpl.js"></script>
+<script src="lib/jquery-ui.js"></script>
+<script>
+    $(function () {
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        $('body').append($('#test').tmpl());
+
+        $('#haha').autocomplete({
+            source: availableTags
+        });
+
+//        $('body').on('focus', '#input', function () {
+//            $(this).autocomplete({
+//                source: availableTags
+//            })
+//        })
+    })
+</script>
+</html>

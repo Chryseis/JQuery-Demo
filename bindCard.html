@@ -1,0 +1,227 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>安全中心-盈盈理财</title>
+    <!--样式文件-->
+    <link rel="shortcut icon" href="http://www.yingyinglicai.com/favicon.ico">
+    <link rel="stylesheet" href="https://yylc-img.b0.upaiyun.com/frontweb/theme/cssnew/reset.css?v=">
+    <link rel="stylesheet" href="https://yylc-img.b0.upaiyun.com/frontweb/theme/cssnew/main.r12151.css?v=">
+
+    <style>
+        .logo{
+            margin-bottom: 62px;
+            width: 100%;
+            height: 217px;
+            background-color:#fff ;
+            background-image: url('./image/bind-card.png');
+            background-repeat: no-repeat;
+            background-size: 76px 76px;
+            background-position: bottom center;
+        }
+
+        .text{
+            margin-bottom: 26px;
+            font-size: 14px;
+            color:#cfcfcf;
+            text-align: center;
+        }
+
+        .text:last-child{
+            margin-bottom: 266px;
+        }
+
+        .text span{
+            font-size: 13px;
+            color: #ea231f;
+        }
+    </style>
+
+    <!--脚本文件-->
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/jsnew/jquery.js?v="></script>
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/jsnew/jquery.timers.js?v="></script>
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/jsnew/jquery.scrollto.js?v="></script>
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/jsnew/jqModal.js?v="></script>
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/jsnew/yylc.js?v="></script>
+    <script type="text/javascript">
+        var app_path = "",
+            staticServer = "https://yylc-img.b0.upaiyun.com/frontweb",
+            thevalue ="";
+    </script>
+    <script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/js/safe/safe.js?v="></script>
+</head>
+
+<body>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-58339225-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<div id="header">
+    <div id="header-con">
+        <div id="header-l" class="fl">
+            <span class="icon-sprite icon-i-1"></span>
+            <p class="fl mg-l-1">客服热线 4000-666-188</p>
+            <span id="weibo" class="icon-sprite icon-i-2 topicon"></span>
+            <span id="weixin" class="icon-sprite icon-i-3 topicon"></span>
+            <span id="qq" class="icon-sprite icon-i-4 topicon"></span>
+        </div>
+        <div id="header-r" class="fr">
+            <p class="fl hl">欢迎回到盈盈理财，<span>冯轶俊</span></p>
+            <p class="fl"><a href="/user/logout.do" rel="nofollow" class="h-r-first">退出</a></p>
+            <p class="fl"><a href="/message/messageCenter.htm">消息中心<span id="msgDiv" ></span></a></p>
+            <p class="fl"><a href="/safe/safeCenterQuery.do" rel="nofollow">安全中心</a></p>
+            <p class="fl"><a href="/help/help-center1.htm" rel="nofollow">帮助中心</a></p>
+            <p class="fl"><a href="/about/about1.htm" rel="nofollow">关于我们</a></p>
+            <p class="fl"><a href="/else/contactUs.htm" rel="nofollow">联系我们</a></p>
+        </div>
+    </div>
+</div>
+
+<div id="menu">
+    <div id="menu-con">
+        <p id="logo" class="fl"><a href="/index.htm"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/logo.png" alt="盈盈理财" title="盈盈理财"></a></p>
+        <div id="nav" class="fr">
+            <span class="nav-a fl"><a href="/index.htm">首　　页</a></span>
+            <span class="nav-a fl"><a href="/else/safetyGuarantee.htm">安全保障</a><em></em></span>
+            <span class="nav-a fl"><a href="/education/list.htm">信息披露</a><em></em></span>
+            <span class="nav-a fl"><a href="/else/newbieGuide.htm">新手引导</a><em></em></span>
+            <span class="nav-a fl"><a href="/borrow/index.htm">我要借款</a><em></em></span>
+            <span class="nav-b fl"><a href="/product/list.htm" class="icon-sprite icon-i-5">我要投资</a><em></em></span>
+            <span class="nav-b fl"><a href="/account/debit/index.htm" class="icon-sprite icon-i-5">我的盈盈</a><em></em></span>
+        </div>
+    </div>
+    <div id="menu-bar">
+        <div id="mbar-left"></div>
+        <div id="mbar-right"></div>
+        <div id="mbar-con">
+            <p></p>
+        </div>
+    </div>
+</div><div id="content">
+    <div id="safe-title">
+        <div class="i-title">
+            <h3><a href="/safe/safeCenterQuery.do">安全中心</a>>银行卡管理</h3>
+        </div>
+    </div>
+    <div id="safe-con">
+        <div id="safe-l">
+            <ul>
+                <li>
+                    <a href="/safe/safeCenterQuery.do" class="safe-n-1">保护账户安全</a>
+                </li>
+                <li>
+                    <a href="/safe/real_name_iden.htm" class="safe-n-2">账户实名认证</a>
+                </li>
+
+                <li>
+                    <a href="/safe/mod_log_pwd_check.htm" class="safe-n-3">修改登录密码</a>
+                </li>
+                <li>
+                    <a href="/safe/mod_pay_pwd_check.htm" class="safe-n-4">修改/找回支付密码</a>
+                </li>
+                <li>
+                    <a href="/safe/chg_bind_cell.htm" class="safe-n-5">更换绑定手机</a>
+                </li>
+                <li>
+                    <a href="/card/bindCardQuery.do" class="safe-n-6 safe-n-6a">银行卡管理</a>
+                </li>
+            </ul>
+        </div>
+        <div id="safe-r">
+            <div class="logo"></div>
+            <p class="text">您当前绑定的提现银行卡：<span class="bank-info">招商银行：5113（尾号）</span></p>
+            <p class="text">如需解绑或换卡请前往"盈盈理财客户端-银行卡管理"</p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div id="f-up">
+        <div id="footer-con-a">
+            <div id="f-1">
+                <p id="f-img">
+                    <span><a href="http://cn.norton.com/" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/7.png" alt="" title=""></a></span>
+                    <span><a href="http://www.pingpinganan.gov.cn/" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/8.png" alt="" title=""></a></span>
+                    <span><a href="http://122.224.75.236/wzba/login.do?method=hdurl&doamin=http://www.yingyinglicai.com/&id=330106000266695&SHID=1223.0AFF_NAME=com.rouger.gs.main.UserInfoAff&AFF_ACTION=qyhzdetail&PAGE_URL=ShowDetail" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/9.png" alt="" title=""></a></span>
+                    <span><a href="/about/about5.htm" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/10.png" alt="" title=""></a></span>
+                    <span><a href="http://www.365anfang.com/" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/11.png" alt="" title=""></a></span>
+                    <span><a href="https://search.szfw.org/cert/l/CX20141015005266005358" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/12.png" alt="" title=""></a></span>
+                    <span><a href="https://ss.knet.cn/verifyseal.dll?sn=e14102033010055136ivxr000000&comefrom=trust" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/13.png" alt="" title=""></a></span>
+                    <span><a href="http://www.anquan.org/authenticate/cert/?site=yingyinglicai.com&sn=2014111117264251930&type=gj" rel="nofollow" target="_blank"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/hangyerenzheng.png" alt="" title=""></a></span>
+                </p>
+                <p id="f-menu">
+                    <span><a href="/about/about1.htm" rel="nofollow">关于我们</a></span>
+                    <span><a href="/else/newbieGuide.htm" rel="nofollow">新手引导</a></span>
+                    <span><a href="/help/help-center1.htm" rel="nofollow">帮助中心</a></span>
+                    <span><a href="/about/about3.htm" rel="nofollow">合作伙伴</a></span>
+                    <span><a href="/else/safetyGuarantee.htm" rel="nofollow">安全保障</a></span>
+                    <span><a href="/else/joinUs.htm" rel="nofollow">加入我们</a></span>
+                    <span><a href="/else/contactUs.htm" rel="nofollow">联系我们</a></span>
+                    <span><a href="http://www.wangdaizhijia.com" rel="nofollow" target="blank">网贷之家</a></span>
+                </p>
+            </div>
+            <div id="f-2">
+                <p id="f-2-a">客服邮箱：kefu@yingyinglicai.com</p>
+                <p id="f-2-b">客服热线（08:00-23:00）</p>
+                <p id="f-2-c">4000-666-188</p>
+            </div>
+        </div>
+    </div>
+    <div id="f-down" style="height:100px">
+        <div id="footer-con-b" >
+            <p style="height:0px;line-height:0px;padding-top: 30px">Copyright &copy; 2013-2017 Hangzhou LongYing Internet Financial Information Technology Co., Ltd. All Rights Reserved. 浙ICP备13015820号-1</p>
+            <p style="height:0px;line-height:0px;margin-top: 25px">版权所有：杭州龙盈互联网金融信息技术有限公司</p>
+            <p style="height:0px;line-height:0px;margin-top: 15px">
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010302001850" style="display:inline-block;text-decoration:none;"><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/gongan.png" style="bottom: 0; float: left"/><span style="float: left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:white;">浙公网安备 33010302001850号</span></a>
+            </p>
+        </div>
+        <p id="datacoo">SH-forum1-web-1-1</p>
+    </div>
+</div>
+
+<div class="to-top"><span></span></div>
+
+<div class="float-frame top-icon" id="weibo-fc" style="display:none;">
+    <div class="inner-frame">
+        <p>点击关注盈盈理财</p>
+        <p style="text-align:center;"><a href="http://weibo.com/yingyinglicai" style="color:#d91d1f" target="_blank">@盈盈理财</a></p>
+        <span class="diamond-1">◆</span><span class="diamond-2">◆</span>
+    </div>
+</div>
+
+<div class="float-frame top-icon" id="weixin-fc" style="display:none;">
+    <div class="inner-frame">
+        <p style="text-align:center;">扫描关注盈盈理财</p>
+        <p><img src="https://yylc-img.b0.upaiyun.com/frontweb/theme/imagesnew/6.png" alt="微信" title="微信"></p>
+        <span class="diamond-1">◆</span><span class="diamond-2">◆</span>
+    </div>
+</div>
+
+<div class="float-frame top-icon top-icon-qq" id="qq-fc" style="display:none;">
+    <div class="inner-frame">
+        <p>盈盈理财投资理财群：</p>
+        <p style="margin-top:35px;">盈盈理财三十二号群 ：</p>
+        <p>414193667</p>
+        <p style="margin-top:35px;">申请加入投资理财群时</p>
+        <p>请提供盈盈理财用户名</p>
+        <span class="diamond-1">◆</span><span class="diamond-2">◆</span>
+    </div>
+</div>
+
+<style> html{display : none ; } </style>
+<script> if( self == top ) { document.documentElement.style.display = 'block' ; } else { top.location = self.location ; } </script>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F95da05670644b43e35b7dded652fd434' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript" src="https://yylc-img.b0.upaiyun.com/frontweb/common/js/common.js?v="></script>
+
+<noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3582025/tongji.gif"/></a></noscript></body>
+</html>
