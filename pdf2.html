@@ -8,6 +8,9 @@
         html, body {
             width: 100%;
             height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #7e8c8d;
         }
 
         .wrapper {
@@ -17,142 +20,92 @@
 
         .page {
             position: fixed;
-            top: 50px;
-            left: 100px;
+            top: 3%;
+            left: 5%;
             text-align: center;
             transform: translateX(-50%);
 
         }
 
         canvas {
-            border-bottom: 1px solid #000;
+            margin-bottom: 10px;
         }
 
-        canvas:last-child{
-            border-bottom: none
+        canvas:last-child {
+            margin-bottom: 0;
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <!--<canvas id="the-canvas" ontouchstart="touchStart()" ontouchend="touchEnd()"></canvas>-->
     <div class="page">
-        <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+        <span><span id="page_num"></span> / <span id="page_count"></span></span>
     </div>
 </div>
 <script>
-    // If absolute URL from the remote server is provided, configure the CORS
-    // header on that server.
-    var url = 'http://192.168.5.129/pdf/47/67/47679a365d7a47c3b846c8ec923aac8a.pdf';
 
-    // The workerSrc property shall be specified.
-    PDFJS.workerSrc = './lib/pdf/pdf.worker.js';
+    window.onload = function () {
+        // If absolute URL from the remote server is provided, configure the CORS
+        // header on that server.
+        var url = './image/test.pdf';
 
-    var startY = 0,
-        endY = 0;
+        // The workerSrc property shall be specified.
+        PDFJS.workerSrc = './lib/pdf/pdf.worker.js';
 
-    var pdfDoc = null,
-        pageNum = 1,
-        pageRendering = false,
-        pageNumPending = null,
-        scale = 1.7;
-    //        canvas = document.getElementById('the-canvas'),
-    //        ctx = canvas.getContext('2d');
+        var pdfDoc = null,
+            pageNum = 1,
+            scale = 1.7;
 
-    /**
-     * Get page info from document, resize canvas accordingly, and render page.
-     * @param num Page number.
-     */
-    function renderPage(num) {
-        pageRendering = true;
-        // Using promise to fetch the page
-        pdfDoc.getPage(num).then(function (page) {
-            var viewport = page.getViewport(scale);
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = document.documentElement.clientWidth;
+        /**
+         * Get page info from document, resize canvas accordingly, and render page.
+         * @param num Page number.
+         */
+        function renderPage(num) {
+            // Using promise to fetch the page
+            pdfDoc.getPage(num).then(function (page) {
+                var viewport = page.getViewport(scale);
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = document.documentElement.clientWidth;
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-            var renderTask = page.render(renderContext);
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
 
-            // Wait for rendering to finish
-            renderTask.promise.then(function () {
-                document.getElementsByClassName('wrapper')[0].appendChild(canvas);
+                // Wait for rendering to finish
+                renderTask.promise.then(function () {
+                    document.getElementsByClassName('wrapper')[0].appendChild(canvas);
+                });
             });
+        }
+
+
+        /**
+         * Asynchronously downloads PDF.
+         */
+        PDFJS.getDocument(url).then(function (pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page_num').textContent = pageNum;
+            document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+            for (var i = 0; i < pdfDoc.numPages; i++) {
+                renderPage(i + 1);
+            }
         });
 
 
-        // Update page counters
-        document.getElementById('page_num').textContent = pageNum;
-    }
-
-    /**
-     * If another page rendering in progress, waits until the rendering is
-     * finised. Otherwise, executes rendering immediately.
-     */
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
-        }
-    }
-
-    /**
-     * Displays previous page.
-     */
-    function onPrevPage() {
-        if (pageNum <= 1) {
-            return;
-        }
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-
-    //document.getElementById('prev').addEventListener('click', onPrevPage);
-
-    /**
-     * Displays next page.
-     */
-    function onNextPage() {
-        if (pageNum >= pdfDoc.numPages) {
-            return;
-        }
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-
-    //document.getElementById('next').addEventListener('click', onNextPage);
-
-    /**
-     * Asynchronously downloads PDF.
-     */
-    PDFJS.getDocument(url).then(function (pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page_count').textContent = pdfDoc.numPages;
-
-        for (var i = 0; i < pdfDoc.numPages; i++) {
-            renderPage(i + 1);
-        }
-    });
-
-    function touchStart() {
-        startY = event.targetTouches[0].pageY;
-    }
-
-    function touchEnd() {
-        endY = event.changedTouches[0].pageY;
-        var offsetY = startY - endY;
-        if (offsetY > 150) {
-            onNextPage();
-        } else if (offsetY < -150) {
-            onPrevPage();
-        }
+        document.addEventListener('scroll', function () {
+            var canvasArr = document.getElementsByTagName('canvas');
+            for (var i = 0; i < canvasArr.length; i++) {
+                if (canvasArr[i].offsetTop <= document.documentElement.scrollTop + canvasArr[i].clientHeight / 2 && (document.documentElement.scrollTop < canvasArr[i + 1] ? document.documentElement.scrollTop < canvasArr[i + 1].offsetTop : true)) {
+                    document.getElementById('page_num').textContent = i + 1;
+                }
+            }
+        })
     }
 </script>
 </body>

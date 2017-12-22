@@ -5,16 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-<canvas id="stockGraph" width="150" height="150">
+<canvas id="stockGraph" width="500" height="500">
 </canvas>
 </body>
 <script>
-    var canvas=document.getElementById('stockGraph');
-    var ctx=canvas.getContext('2d');
-    ctx.fillStyle = "rgb(200,0,0)";
-    ctx.fillRect (10, 10, 55, 50);
+    var canvas = document.getElementById('stockGraph');
+    var ctx = canvas.getContext('2d');
+    ctx.beginPath(); // 开启绘制路径
+    ctx.arc(10, 10, 5, 0, 2 * Math.PI); // 绘制圆 参数依次为 圆的横坐标/纵坐标/半径/绘制圆的起始位置/绘制圆的弧度大小
+    ctx.fillStyle = "rgb(0,0,0)"; // 设置填充颜色
+    this.ctx.fill();
+    ctx.closePath();
 
-    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-    ctx.fillRect (30, 30, 55, 50);
+    ctx.beginPath();
+    ctx.arc(30, 80, 5, 0, 2 * Math.PI); // 绘制圆 参数依次为 圆的横坐标/纵坐标/半径/绘制圆的起始位置/绘制圆的弧度大小
+    ctx.fillStyle = "rgb(0,0,0)"; // 设置填充颜色
+    ctx.fill();
+    ctx.closePath();
+
+    ctx.beginPath(); // 开启绘制路径
+    ctx.moveTo(10, 10); // 设置线的起始位置
+    ctx.lineTo(30, 80); // 设置线的结束位置
+    ctx.strokeStyle = 'rgb(0,0,0)'; // 设置绘制线条的颜色
+    ctx.stroke(); // 绘制
+    ctx.closePath(); // 关闭绘制路径
 </script>
 </html>

@@ -16,28 +16,33 @@
         .clearfix {
             zoom: 1;
         }
-        .child-known{
+
+        .child-known {
             width: 350px;
             margin: 0 auto;
             text-align: center;
             /*line-height: 20px;//单行居中*/
         }
-        .child-unknown{
-            display:inline-block;
+
+        .child-unknown {
+            display: inline-block;
             border: solid red 1px;
             margin: auto 0;
             height: 200px;
         }
-        .parent-unknown{
+
+        .parent-unknown {
             /*display: table;*/
             text-align: center;
             height: 500px;
             /*width: 500px;*/
         }
-        .parent-known-position{
+
+        .parent-known-position {
             position: relative;
         }
-        .child-known-position{
+
+        .child-known-position {
             position: absolute;
             left: 50%;
             width: 350px;
@@ -47,13 +52,15 @@
             /*top:50%;垂直居中*/
             /*margin-top:-175px;//垂直居中*/
         }
-        .parent-unknown-position{
+
+        .parent-unknown-position {
             position: relative;
         }
-        .child-unknown-position{
+
+        .child-unknown-position {
             position: absolute;
             left: 50%;
-            transform:translateX(-50%);
+            transform: translateX(-50%);
             /*top:50%*/
             /*transform:translateY(-50%);//垂直居中*/
             /*transform: translate(-50%,-50%);垂直水平*/
@@ -62,18 +69,18 @@
 </head>
 <body>
 <!--<div class="parent">-->
-    <!--<div class="child-known">子元素占位</div>-->
+<!--<div class="child-known">子元素占位</div>-->
 <!--</div>-->
 <!--<div class="parent-unknown">-->
-    <!--<div class="child-unknown">子元素未知占位</div>-->
+<!--<div class="child-unknown">子元素未知占位</div>-->
 <!--</div>-->
 <!--<div class="parent-known-position">-->
-    <!--<div class="child-known-position">子元素已知不占位</div>-->
+<!--<div class="child-known-position">子元素已知不占位</div>-->
 <!--</div>-->
 <!--<div class="parent-unknown-position">-->
-    <!--<div class="child-unknown-position">子元素未知不占位</div>-->
+<!--<div class="child-unknown-position">子元素未知不占位</div>-->
 <!--</div>-->
-<div class="clearfix" >
+<div class="clearfix">
     <span style="width: 40px;;float: left;border:#00a2d4 1px solid">aaa</span>
     <div style="border:#000000 1px solid;overflow: hidden">bbb</div>
 </div>
@@ -84,8 +91,8 @@
     <button id="showVideo">显示视频</button>
 </div>
 <!--<div class="clearfix">-->
-    <!--<span style="width: 40px;;position:relative;float: left;border:#00a2d4 1px solid">123213123</span>-->
-    <!--<div style="border:#000000 1px solid ">213213132131231</div>-->
+<!--<span style="width: 40px;;position:relative;float: left;border:#00a2d4 1px solid">123213123</span>-->
+<!--<div style="border:#000000 1px solid ">213213132131231</div>-->
 <!--</div>-->
 <script src="lib/jquery.min.js"></script>
 <script src="https://qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js" charset="utf-8"></script>
@@ -93,11 +100,30 @@
     $(function () {
         $('#showVideo').click(function () {
             $('.video').show();
-            (function(){
-                var option ={"auto_play":"0","file_id":'14651978969403722416',"app_id":"1252767316","width":500,"height":300,"https":0,"stretch_full":1};
+            (function () {
+                var option = {
+                    "auto_play": "0",
+                    "file_id": '14651978969403722416',
+                    "app_id": "1252767316",
+                    "width": 500,
+                    "height": 300,
+                    "https": 0,
+                    "stretch_full": 1
+                };
                 /*调用播放器进行播放*/
-                new qcVideo.Player( /*代码中的id_video_container将会作为播放器放置的容器使用,可自行替换*/ "videoDemo", option );
+                new qcVideo.Player(/*代码中的id_video_container将会作为播放器放置的容器使用,可自行替换*/ "videoDemo", option);
             })();
+        })
+
+        $.ajax({
+            url: './source/team.json',
+            type: 'get',
+            success: function () {
+                $('body').append('<div id="haha">haha</div>');
+               $('#haha').click(function () {
+                   alert('123')
+               })
+            }
         })
     })
 
