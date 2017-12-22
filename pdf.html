@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">-->
+    <title>Title</title>
+    <script src="./lib/pdf/pdf.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .page {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            text-align: center;
+            /*font-size: 50px;*/
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <canvas id="the-canvas" ontouchstart="touchStart()" ontouchend="touchEnd()"></canvas>
+    <div class="page">
+        <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+    </div>
+</div>
+<script>
+    // If absolute URL from the remote server is provided, configure the CORS
+    // header on that server.
+    var url = 'http://192.168.5.129/pdf/47/67/47679a365d7a47c3b846c8ec923aac8a.pdf';
+
+    // The workerSrc property shall be specified.
+    PDFJS.workerSrc = './lib/pdf/pdf.worker.js';
+
+    var startX = 0,
+        endX = 0;
+
+    var pdfDoc = null,
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 1,
+        canvas = document.getElementById('the-canvas'),
+        ctx = canvas.getContext('2d');
+
+    /**
+     * Get page info from document, resize canvas accordingly, and render page.
+     * @param num Page number.
+     */
+    function renderPage(num) {
+        pageRendering = true;
+        // Using promise to fetch the page
+        pdfDoc.getPage(num).then(function (page) {
+            var viewport = page.getViewport(1.7);
+            canvas.height = document.documentElement.clientHeight;
+            canvas.width = document.documentElement.clientWidth;
+
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+            var renderTask = page.render(renderContext);
+
+            // Wait for rendering to finish
+            renderTask.promise.then(function () {
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    // New page rendering is pending
+                    renderPage(pageNumPending);
+                    pageNumPending = null;
+                }
+            });
+        });
+
+        // Update page counters
+        document.getElementById('page_num').textContent = pageNum;
+    }
+
+    /**
+     * If another page rendering in progress, waits until the rendering is
+     * finised. Otherwise, executes rendering immediately.
+     */
+    function queueRenderPage(num) {
+        if (pageRendering) {
+            pageNumPending = num;
+        } else {
+            renderPage(num);
+        }
+    }
+
+    /**
+     * Displays previous page.
+     */
+    function onPrevPage() {
+        if (pageNum <= 1) {
+            return;
+        }
+        pageNum--;
+        queueRenderPage(pageNum);
+    }
+
+    //document.getElementById('prev').addEventListener('click', onPrevPage);
+
+    /**
+     * Displays next page.
+     */
+    function onNextPage() {
+        if (pageNum >= pdfDoc.numPages) {
+            return;
+        }
+        pageNum++;
+        queueRenderPage(pageNum);
+    }
+
+    //document.getElementById('next').addEventListener('click', onNextPage);
+
+    /**
+     * Asynchronously downloads PDF.
+     */
+    PDFJS.getDocument(url).then(function (pdfDoc_) {
+        pdfDoc = pdfDoc_;
+        document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+        // Initial/first page rendering
+        renderPage(pageNum);
+    });
+
+    function touchStart() {
+        startX = event.targetTouches[0].pageX;
+    }
+
+    function touchEnd() {
+        endX = event.changedTouches[0].pageX;
+        var offsetX = startX - endX;
+        if (offsetX > 150) {
+            onNextPage();
+        } else if (offsetX < -150) {
+            onPrevPage();
+        }
+    }
+</script>
+</body>
+</html>

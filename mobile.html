@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ami-static.b0.upaiyun.com/active2016/base/flexible.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            background-image: url('./image/subway-bg-1.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<!--<img src="./image/subway-bg-1.jpg" id="img" alt="">-->
+<!--<div class="bg"></div>-->
+<button type="button" onclick="generatorPic();">点击</button>
+<script src="./lib/jquery.js"></script>
+<script src="./lib/html2canvas.js"></script>
+<script>
+    function generatePic(elem) {
+        var dom = elem.getElementsByClassName('story')[0];
+        var text = dom.innerHTML;
+        var rect = dom.getBoundingClientRect();
+        var image = new Image();
+        var canvas = document.createElement('canvas');
+
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight;
+
+        var ctx = canvas.getContext('2d');
+
+        image.onload = function () {
+            ctx.drawImage(image, 0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
+            var url = canvas.toDataURL('image/png');
+        }
+        image.src = '/image/subway-write2.jpg';
+    }
+
+
+    function writeTextOnCanvas(ctx, lh, rw, text) {
+//        var cns = document.getElementById(cns);
+//        var ctx = cns.getContext("2d");
+        var lineheight = lh;
+        var text = text;
+
+        ctx.width = cns.width;
+        ctx.height = cns.height;
+
+        ctx.clearRect(0, 0, ctx.width, ctx.height);
+        ctx.font = "16px 微软雅黑";
+        ctx.fillStyle = "#fff";
+
+        function getTrueLength(str) {//获取字符串的真实长度（字节长度）
+            var len = str.length, truelen = 0;
+            for (var x = 0; x < len; x++) {
+                if (str.charCodeAt(x) > 128) {
+                    truelen += 2;
+                } else {
+                    truelen += 1;
+                }
+            }
+            return truelen;
+        }
+
+        function cutString(str, leng) {//按字节长度截取字符串，返回substr截取位置
+            var len = str.length, tlen = len, nlen = 0;
+            for (var x = 0; x < len; x++) {
+                if (str.charCodeAt(x) > 128) {
+                    if (nlen + 2 < leng) {
+                        nlen += 2;
+                    } else {
+                        tlen = x;
+                        break;
+                    }
+                } else {
+                    if (nlen + 1 < leng) {
+                        nlen += 1;
+                    } else {
+                        tlen = x;
+                        break;
+                    }
+                }
+            }
+            return tlen;
+        }
+
+        for (var i = 1; getTrueLength(text) > 0; i++) {
+            var tl = cutString(text, rw);
+            ctx.fillText(text.substr(0, tl).replace(/^\s+|\s+$/, ""), 10, i * lineheight + 50);
+            text = text.substr(tl);
+        }
+    }
+
+
+    //    $(function () {
+    //        var image = new Image();
+    //        var canvas = document.createElement('canvas');
+    //
+    //        canvas.width = document.documentElement.clientWidth;
+    //        canvas.height = document.documentElement.clientHeight;
+    //
+    //        var ctx = canvas.getContext('2d');
+    //
+    //        image.onload = function () {
+    //            ctx.drawImage(image, 0, 0, document.documentElement.clientWidth, document.documentElement.clientHeight);
+    //            var url = canvas.toDataURL('image/png');
+    //            var img = $('<img >').attr('src', url);
+    //            $('body').append(img);
+    //        }
+    //        image.src = '/image/subway-write2.jpg';
+    //    })
+</script>
+</body>
+</html>
