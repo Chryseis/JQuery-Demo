@@ -116,7 +116,6 @@
             document.addEventListener('scroll', function () {
                 var canvasArr = document.getElementsByTagName('canvas');
                 var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-//                alert(canvasArr.length);
                 //page hide
                 if (!intervalID) {
                     intervalID = setInterval(function () {
@@ -135,8 +134,9 @@
                     document.getElementsByClassName('page')[0].className += ' ' + 'active';
                     isScroll = true;
                 }
+                //change page
                 for (var i = 0; i < canvasArr.length; i++) {
-                    if (canvasArr[i].offsetTop <= scrollTop + canvasArr[i].clientHeight / 1.2 && (canvasArr[i + 1] ? scrollTop < canvasArr[i + 1].offsetTop : true)) {
+                    if (canvasArr[i].offsetTop <= scrollTop + canvasArr[i].clientHeight / 1.5 && (canvasArr[i + 1] ? scrollTop < canvasArr[i + 1].offsetTop : true)) {
                         document.getElementById('page_num').textContent = i + 1;
                     }
                 }
