@@ -65,6 +65,7 @@
             scale = 1.6,
             pageRendering = false,
             isScroll = false,
+            scrollTop=0,
             oldScrollTop = 0,
             intervalID = null;
 
@@ -115,11 +116,11 @@
         function scrollChange() {
             document.addEventListener('scroll', function () {
                 var canvasArr = document.getElementsByTagName('canvas');
-                var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+                scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
                 //page hide
                 if (!intervalID) {
                     intervalID = setInterval(function () {
-                        if (oldScrollTop == document.body.scrollTop) {
+                        if (oldScrollTop == scrollTop) {
                             setTimeout(function () {
                                 document.getElementsByClassName('page')[0].className = 'page';
                                 clearInterval(intervalID);
@@ -143,7 +144,6 @@
                 oldScrollTop = scrollTop;
             })
         }
-
     }
 </script>
 </body>
