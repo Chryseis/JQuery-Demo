@@ -22,9 +22,17 @@
             position: fixed;
             top: 3%;
             left: 5%;
+            padding: 3px;
             text-align: center;
             transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, .2);
+            border-radius: 10px;
+            opacity: 0;
+            transition: all .3s ease-in;
+        }
 
+        .active {
+            opacity: 1;
         }
 
         canvas {
@@ -54,7 +62,10 @@
 
         var pdfDoc = null,
             pageNum = 1,
-            scale = 1.7;
+            scale = 1.6,
+            isScroll = false,
+            oldScrollTop = 0,
+            intervalID=null;
 
         /**
          * Get page info from document, resize canvas accordingly, and render page.
@@ -100,12 +111,33 @@
 
         document.addEventListener('scroll', function () {
             var canvasArr = document.getElementsByTagName('canvas');
+            //page hide
+            if(!intervalID){
+                intervalID = setInterval(function () {
+                    if (oldScrollTop == document.documentElement.scrollTop) {
+                        setTimeout(function () {
+                            document.getElementsByClassName('page')[0].className = 'page';
+                            clearInterval(intervalID);
+                            isScroll=false;
+                            intervalID=null;
+                        }, 1000)
+                    }
+                }, 1000);
+            }
+            //page show
+            if (!isScroll) {
+                document.getElementsByClassName('page')[0].className += ' ' + 'active';
+                isScroll = true;
+            }
             for (var i = 0; i < canvasArr.length; i++) {
                 if (canvasArr[i].offsetTop <= document.documentElement.scrollTop + canvasArr[i].clientHeight / 2 && (document.documentElement.scrollTop < canvasArr[i + 1] ? document.documentElement.scrollTop < canvasArr[i + 1].offsetTop : true)) {
                     document.getElementById('page_num').textContent = i + 1;
                 }
             }
+            oldScrollTop = document.documentElement.scrollTop;
         })
+
+
     }
 </script>
 </body>
