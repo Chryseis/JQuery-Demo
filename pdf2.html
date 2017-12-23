@@ -63,15 +63,17 @@
         var pdfDoc = null,
             pageNum = 1,
             scale = 1.6,
+            pageRendering = false,
             isScroll = false,
             oldScrollTop = 0,
-            intervalID=null;
+            intervalID = null;
 
         /**
          * Get page info from document, resize canvas accordingly, and render page.
          * @param num Page number.
          */
         function renderPage(num) {
+            pageRendering = true;
             // Using promise to fetch the page
             pdfDoc.getPage(num).then(function (page) {
                 var viewport = page.getViewport(scale);
@@ -89,7 +91,10 @@
 
                 // Wait for rendering to finish
                 renderTask.promise.then(function () {
+                    pageRendering = false;
                     document.getElementsByClassName('wrapper')[0].appendChild(canvas);
+                    num < pdfDoc.numPages && renderPage(num + 1);
+                    num == pdfDoc.numPages && scrollChange();
                 });
             });
         }
@@ -103,40 +108,41 @@
             document.getElementById('page_num').textContent = pageNum;
             document.getElementById('page_count').textContent = pdfDoc.numPages;
 
-            for (var i = 0; i < pdfDoc.numPages; i++) {
-                renderPage(i + 1);
-            }
+            renderPage(pageNum);
         });
 
 
-        document.addEventListener('scroll', function () {
-            var canvasArr = document.getElementsByTagName('canvas');
-            //page hide
-            if(!intervalID){
-                intervalID = setInterval(function () {
-                    if (oldScrollTop == document.documentElement.scrollTop) {
-                        setTimeout(function () {
-                            document.getElementsByClassName('page')[0].className = 'page';
-                            clearInterval(intervalID);
-                            isScroll=false;
-                            intervalID=null;
-                        }, 1000)
-                    }
-                }, 1000);
-            }
-            //page show
-            if (!isScroll) {
-                document.getElementsByClassName('page')[0].className += ' ' + 'active';
-                isScroll = true;
-            }
-            for (var i = 0; i < canvasArr.length; i++) {
-                if (canvasArr[i].offsetTop <= document.documentElement.scrollTop + canvasArr[i].clientHeight / 2 && (document.documentElement.scrollTop < canvasArr[i + 1] ? document.documentElement.scrollTop < canvasArr[i + 1].offsetTop : true)) {
-                    document.getElementById('page_num').textContent = i + 1;
+        function scrollChange() {
+            document.addEventListener('scroll', function () {
+                var canvasArr = document.getElementsByTagName('canvas');
+                var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+//                alert(canvasArr.length);
+                //page hide
+                if (!intervalID) {
+                    intervalID = setInterval(function () {
+                        if (oldScrollTop == document.body.scrollTop) {
+                            setTimeout(function () {
+                                document.getElementsByClassName('page')[0].className = 'page';
+                                clearInterval(intervalID);
+                                isScroll = false;
+                                intervalID = null;
+                            }, 500)
+                        }
+                    }, 1000);
                 }
-            }
-            oldScrollTop = document.documentElement.scrollTop;
-        })
-
+                //page show
+                if (!isScroll) {
+                    document.getElementsByClassName('page')[0].className += ' ' + 'active';
+                    isScroll = true;
+                }
+                for (var i = 0; i < canvasArr.length; i++) {
+                    if (canvasArr[i].offsetTop <= scrollTop + canvasArr[i].clientHeight / 1.2 && (canvasArr[i + 1] ? scrollTop < canvasArr[i + 1].offsetTop : true)) {
+                        document.getElementById('page_num').textContent = i + 1;
+                    }
+                }
+                oldScrollTop = scrollTop;
+            })
+        }
 
     }
 </script>
