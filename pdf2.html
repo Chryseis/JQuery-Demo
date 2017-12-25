@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="./lib/pdf/pdf.js"></script>
+    <script src="https://fe.yingyinglicai.com/h5-activities/2017/yhcg20171225-pdf/pdf.js"></script>
     <style>
         html, body {
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #7e8c8d;
+            background-color: #E8E8E8;
         }
 
         .wrapper {
@@ -25,7 +25,7 @@
             padding: 3px;
             text-align: center;
             transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, .2);
+            background-color: #f4f4f4;
             border-radius: 10px;
             opacity: 0;
             transition: all .3s ease-in;
@@ -51,21 +51,25 @@
     </div>
 </div>
 <script>
-
     window.onload = function () {
+        showLoading('loading');
+        var pdf = getQueryString('pdf');
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
-        var url = './image/test.pdf';
+        // var url = './image/test.pdf';
+        //var url = 'http://192.168.5.129/pdf/47/67/47679a365d7a47c3b846c8ec923aac8a.pdf';
+
+        var url = pdf || 'http://192.168.5.129/pdf/47/67/47679a365d7a47c3b846c8ec923aac8a.pdf';
 
         // The workerSrc property shall be specified.
-        PDFJS.workerSrc = './lib/pdf/pdf.worker.js';
+        PDFJS.workerSrc = 'https://fe.yingyinglicai.com/h5-activities/2017/yhcg20171225-pdf/pdf.worker.js';
 
         var pdfDoc = null,
             pageNum = 1,
             scale = 1.6,
             pageRendering = false,
             isScroll = false,
-            scrollTop=0,
+            scrollTop = 0,
             oldScrollTop = 0,
             intervalID = null;
 
@@ -95,7 +99,7 @@
                     pageRendering = false;
                     document.getElementsByClassName('wrapper')[0].appendChild(canvas);
                     num < pdfDoc.numPages && renderPage(num + 1);
-                    num == pdfDoc.numPages && scrollChange();
+                    num == pdfDoc.numPages && closeLoading() && scrollChange();
                 });
             });
         }
@@ -144,6 +148,26 @@
                 oldScrollTop = scrollTop;
             })
         }
+
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURIComponent(r[2]);
+            return null;
+        }
+    }
+
+    function showLoading(text) {
+        document.addEventListener('WinJSBridgeReady', function () {
+            window.WinJSBridge.call('controller', 'showLoading', {text: text});
+        });
+    }
+
+    function closeLoading() {
+        document.addEventListener('WinJSBridgeReady', function () {
+            window.WinJSBridge.call('controller', 'hideLoading');
+        });
     }
 </script>
 </body>
