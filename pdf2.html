@@ -52,7 +52,7 @@
 </div>
 <script>
     window.onload = function () {
-        showLoading('loading');
+        showLoading('正在加载...');
         var pdf = getQueryString('pdf');
         // If absolute URL from the remote server is provided, configure the CORS
         // header on that server.
@@ -99,7 +99,7 @@
                     pageRendering = false;
                     document.getElementsByClassName('wrapper')[0].appendChild(canvas);
                     num < pdfDoc.numPages && renderPage(num + 1);
-                    num == pdfDoc.numPages && closeLoading() && scrollChange();
+                    num == pdfDoc.numPages && (closeLoading(), scrollChange());
                 });
             });
         }
