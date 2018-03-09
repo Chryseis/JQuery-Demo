@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ami-static.b0.upaiyun.com/active2016/base/flexible.js"></script>
+    <title>跳转</title>
+    <link href="https://fe.yingyinglicai.com/h5-projects/cunguan/loading/index.css" rel="stylesheet">
+</head>
+<body>
+<div class="loading">
+    <div class="content-wrapper" style="top: 46.2%">
+        <div class="pic"><img src="https://fe.yingyinglicai.com/h5-projects/cunguan/loading/callback.gif" alt="加载"></div>
+        <div class="text">正在前往 盈盈理财，请耐心等待...</div>
+    </div>
+    <div class="logo"><img src="https://fe.yingyinglicai.com/h5-projects/cunguan/loading/logo.png" alt="logo"></div>
+</div>
+<form id="form1" name="form1" method="post" action="http://192.168.5.88:8804/entrustweb/notify.do" accept-charset="UTF-8">
+    <div style="display: none">
+        <input type="hidden" name="serviceName" value="RECHARGE"/>
+        <input type="hidden" name="platformNo" value="9100001952"/>
+        <input type="hidden" name="userDevice" value="MOBILE"/>
+        <input type="hidden" name="rechargeWay" value="SWIFT"/>
+        <input type="hidden" name="rechargeStatus" value="SUCCESS"/>
+        <input type="hidden" name="status" value="SUCCESS"/>
+        <input type="hidden" name="code" value="0"/>
+        <input type="hidden" name="payMobile" value="17600000055"/>
+        <input type="hidden" name="amount" value="100"/>
+        <input type="hidden" name="sign" value="BE6CB219D7B2C785277DE025BE679C13"/>
+        <input type="hidden" name="payCompany" value="ALLINPAY"/> <br/>
+        <input type="hidden" name="transactionTime" value="20180211182722"/>
+        <input type="hidden" name="requestNo" value="6120180211013147"/>
+        <input type="hidden" name="bankcode" value="CMBC"/>
+        <input type="hidden" name="platformUserNo" value="8201802080017663"/>
+        <input type="hidden" name="commission" value="0"/>
+    </div>
+</form>
+
+
+<script type="text/javascript" src="/etapi/resources/js/index.js"></script>
+<script>
+    document.getElementById("form1").submit();
+</script>
+</body>
+</html>

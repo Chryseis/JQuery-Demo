@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./lib/jquery.js"></script>
+
+    <style>
+        .sex-wrapper {
+            position: relative;
+        }
+
+        .sex-wrapper input[type='radio'] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 0px;
+            height: 0px;
+        }
+
+        .sex-wrapper label {
+            padding-left: 20px;
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            background-image: url('./image/icon-evaluate-empty.png');
+            background-repeat: no-repeat;
+            background-size: 14px 14px;
+            background-position: left center;
+            cursor: pointer;
+        }
+
+        /*.sex-wrapper input[type='radio']:checked + label {*/
+        /*background-image: url('./image/icon-evaluate-right.png');*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="sex">
+    <div class="sex-wrapper">
+        <input type="radio" name="sex" id="female">
+        <label for="female">女</label>
+    </div>
+    <div class="sex-wrapper">
+        <input type="radio" name="sex" id="male">
+        <label for="male">男</label>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $('input').click(function () {
+        $('input[name="' + $(this).attr('name') + '"]').prop('checked', false).siblings('label').attr('style', 'background-image: url(\'./image/icon-evaluate-empty.png\');');
+        $(this).prop('checked', true);
+        $(this).siblings('label').attr('style', 'background-image: url(\'./image/icon-evaluate-right.png\');');
+    })
+</script>
