@@ -6,17 +6,33 @@
 </head>
 <body>
 <input type="text" onkeydown="change()" maxlength="13">
+<input class="put" id="number-password-input" type="tel" maxlength="12" tabindex="6" onkeyup="dealKeyup(this);">
 </body>
+<script src="./lib/jquery.js"></script>
 <script>
+    function dealKeyup(that) {
+        var input_val = $(that).val();
+//        var input_arr = input_val.split("-");
+//        for(var i=0;i<input_arr.length;i++) {
+//            if (input_arr[i] == ' ') {
+//                setCaretPosition(that, i*2);
+//                return;
+//            }
+//        }
+        setCaretPosition(that, 2);
+        return;
+    }
+
+
     function change() {
         event.target.value = formatPhone(event.target.value)
     }
 
     function formatPhone(phone) {
         phone = phone.replace(/\s/g, '');
-        if (phone.length > 3 && phone.length < 7) {
+        if (phone.length > 3 && phone.length <= 7) {
             phone = phone.substr(0, 3) + ' ' + phone.substr(3, phone.length - 3);
-        } else if (phone.length >= 7 && phone.length < 12) {
+        } else if (phone.length > 7 && phone.length < 12) {
             phone = phone.substr(0, 3) + ' ' + phone.substr(3, 4) + ' ' + phone.substr(7, phone.length - 7);
         }
         return phone;
