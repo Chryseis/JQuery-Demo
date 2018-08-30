@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="lib/jquery-ui.css">
 </head>
 <body>
-    <input type="text" id="haha">
+<!--<input type="text" id="haha">-->
+<div id="haha">hahahaha</div>
 </body>
 <script type="text/html" id="test">
     <input type="text" id="input">
@@ -42,10 +43,20 @@
         ];
         $('body').append($('#test').tmpl());
 
-        $('#haha').autocomplete({
-            source: availableTags
-        });
+//        $('#haha').autocomplete({
+//            source: availableTags
+//        });
 
+        $('#haha').click(function () {
+            event.stopPropagation()
+            event.preventDefault()
+            alert(123)
+        })
+        $('#haha').click(function () {
+            event.stopPropagation()
+            event.preventDefault()
+            alert(321)
+        })
 //        $('body').on('focus', '#input', function () {
 //            $(this).autocomplete({
 //                source: availableTags

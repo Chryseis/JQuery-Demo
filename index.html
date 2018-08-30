@@ -12,6 +12,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=750, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title>Title</title>
 </head>
 <style>
@@ -78,28 +79,58 @@
         display: none;
     }
 </style>
+<style>
+    .input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        height: 30px;
+        text-indent: -999em;
+        margin-left: -100%;
+        width: 200%;
+        opacity: 0;
+    }
+
+    .text {
+        position: relative;
+        z-index: 1;
+        pointer-events: none;
+        height: 30px;
+        background-color: red;
+    }
+</style>
 <body>
-<div style="width: 800px;height: 600px;border: solid">
-    <div class="area-content city1">
-        <input id="city" class="city" type="text" style="width: 300px" />
-        <div class="area-container hide">
-            <div class="area">
-                <ul class="area-tools clearfix">
-                    <li class="area-province active">选择省份</li>
-                    <li class="area-citys">选择城市</li>
-                    <li class="area-subdistrict">选择区县</li>
-                </ul>
-            </div>
-            <div class="container province">
-            </div>
-            <div class="container citys hide">
-            </div>
-            <div class="container subdistrict hide">
-            </div>
-        </div>
-    </div>
-    <!--<video src="http://200036824.vod.myqcloud.com/200036824_5eb5e91eba8c11e6bc811bda67685817.f0.mp4" width="658" height="444" autoplay="autoplay"></video>-->
+<div style="width: 300px">
+    <input class="input" type="text" id="haha" onkeydown="setStyle('haha1')">
+    <div class="text" id="haha1"></div>
 </div>
+<script type="text/javascript">
+    function setStyle(x) {
+        document.getElementById(x).innerHTML = document.getElementById('haha').value;
+    }
+</script>
+<!--<div style="width: 800px;height: 600px;border: solid">-->
+<!--<div class="area-content city1">-->
+<!--<input id="city" class="city" type="text" style="width: 300px" />-->
+<!--<div class="area-container hide">-->
+<!--<div class="area">-->
+<!--<ul class="area-tools clearfix">-->
+<!--<li class="area-province active">选择省份</li>-->
+<!--<li class="area-citys">选择城市</li>-->
+<!--<li class="area-subdistrict">选择区县</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="container province">-->
+<!--</div>-->
+<!--<div class="container citys hide">-->
+<!--</div>-->
+<!--<div class="container subdistrict hide">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<video src="http://200036824.vod.myqcloud.com/200036824_5eb5e91eba8c11e6bc811bda67685817.f0.mp4" width="658" height="444" autoplay="autoplay"></video>&ndash;&gt;-->
+<!--</div>-->
 </body>
 <script type="text/html" id="tmpl">
     <a href="javascript:void(0)" data-code="{{= code}}">{{= name}}</a>
@@ -115,7 +146,7 @@
 <script src="js/selectArea.js"></script>
 <script>
     $(function () {
-        var selectarea=new selectArea();
+        var selectarea = new selectArea();
         selectarea.loadData('.city1');
     })
 </script>
