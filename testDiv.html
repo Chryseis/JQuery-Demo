@@ -1,33 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        html,body{
-            margin: 0px;
-        }
-        .parent{
-            overflow: hidden;
-            margin: 0 -10px;
-        }
-        .child{
-            float: left;
-            width: 33.3%;
-            height: 100px;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-        .content{
-            border: 1px solid #000;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
 </head>
 <body>
-<div class="parent">
-    <div class="child"><div class="content">content</div></div>
-    <div class="child"><div class="content">content</div></div>
-    <div class="child"><div class="content">content</div></div>
-</div>
+<p id="message"></p>
+<p id="error"></p>
+<video style="width: 320px;height: 180px;"></video>
+<canvas width="320" height="180 "></canvas>
+<button id="take">take</button>
+<button id="upload">upload</button>
+<input style="display: none;" type="file" accept="image/*" />
+<script>
+    document.querySelector("#message").innerHTML =
+      "getUserMedia" in navigator.mediaDevices
+        ? "api is exist"
+        : "api is not exist";
+
+    const constraints = {
+        audio: false,
+        video: {
+            width: 320,
+            height: 180,
+            facingMode: "user"
+        }
+    };
+    window.navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(mediaStream => {
+          const video = document.querySelector("video");
+          video.srcObject = mediaStream;
+          video.onloadedmetadata = e => {
+              video.play();
+          };
+      })
+      .catch(err => {
+          document.querySelector("#error").innerHTML = err.name + ": " + err.message;
+      });
+    const video = document.querySelector("video");
+    const canvas = document.querySelector("canvas");
+    const take = document.querySelector("#take");
+    const upload = document.querySelector("#upload");
+
+    const drawImage = () => {
+        canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+    };
+    const uploadImg = () => {
+        canvas.toBlob(blob => {
+            const formData = new FormData();
+            formData.append("img", blob);
+            formData.append("123", "123");
+            fetch("/api/upload", {
+                method: "POST",
+                body: formData
+            })
+              .then(response => response.json())
+              .catch(error => console.error("Error:", error))
+              .then(response => console.log("Success:", response));
+        });
+    };
+    take.addEventListener("click", drawImage);
+    upload.addEventListener("click", uploadImg);
+</script>
 </body>
 </html>

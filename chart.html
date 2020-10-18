@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .chart {
+            width: 156px;
+            height: 156px;
+            background-image: url('./image/test.png');
+            background-repeat: no-repeat;
+            background-position-x: 0;
+            background-position-y: 0px;
+        }
+
+        .ant1 {
+            background-position-y: -156px;
+        }
+
+        .ant2 {
+            background-position-y: -317px;
+        }
+
+        .ant3 {
+            background-position-y: -475px;
+        }
+
+        .ant4 {
+            background-position-y: -631px;
+        }
+
+        .ant5 {
+            background-position-y: -790px;
+        }
+
+        .ant6 {
+            background-position-y: -948px;
+        }
+
+        .ant7 {
+            background-position-y: -1106px;
+        }
+
+        .ant8 {
+            background-position-y: -1263px;
+        }
+
+        .ant9 {
+            background-position-y: -1422px;
+        }
+    </style>
+</head>
+<body>
+<div class="chart"></div>
+</body>
+<script src="./lib/jquery-3.2.1.min.js"></script>
+<script>
+    var i = 1;
+    $('.chart').hover(function () {
+        $('.chart').addClass('ant' + i);
+        var timer = setInterval(function () {
+            if (i < 9) {
+                $('.chart').removeClass('ant' + i);
+                $('.chart').addClass('ant' + (i + 1));
+                i++;
+            } else {
+                clearInterval(timer);
+            }
+        }, 100)
+    })
+
+</script>
+</html>

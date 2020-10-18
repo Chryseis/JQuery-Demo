@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>智云健康</title>
+    <script src="./lib/pdf/pdf.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #E8E8E8;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .page {
+            position: fixed;
+            top: 3%;
+            left: 5%;
+            padding: 3px;
+            text-align: center;
+            transform: translateX(-50%);
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            opacity: 0;
+            transition: all .3s ease-in;
+        }
+
+        canvas{
+            display: block;
+            margin: 0 auto 2px auto;
+        }
+
+        canvas:last-child{
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+</div>
+<script>
+    window.onload = function () {
+        var pdf = getQueryString('pdf');
+
+        var url = pdf || './image/agreement2.pdf';
+
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = './lib/pdf/pdf.worker.js';
+
+        var pageNum = 1,
+            scale = 1;
+        /**
+         * Get page info from document, resize canvas accordingly, and render page.
+         * @param num Page number.
+         */
+        function renderPage(num,pdfDoc) {
+            // Using promise to fetch the page
+            var desiredWidth = document.body.clientWidth;
+            var devicePixelRatio = window.devicePixelRatio || 1;
+
+            pdfDoc.getPage(num).then(function (page) {
+                var viewport = page.getViewport({ scale });
+                var desiredScale = desiredWidth / viewport.width;
+                var scaledViewport = page.getViewport({ scale: desiredScale });
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.style.width = scaledViewport.width+'px';
+                canvas.style.height = scaledViewport.height+'px';
+                canvas.width = scaledViewport.width*devicePixelRatio;
+                canvas.height = scaledViewport.height*devicePixelRatio;
+
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: ctx,
+                    viewport: scaledViewport,
+                    transform: [devicePixelRatio, 0, 0,devicePixelRatio, 0, 0],
+                };
+                var renderTask = page.render(renderContext);
+
+                // Wait for rendering to finish
+                renderTask.promise.then(function () {
+                    document.getElementsByClassName('wrapper')[0].appendChild(canvas);
+                    num < pdfDoc.numPages && renderPage(num + 1,pdfDoc);
+                });
+            });
+        }
+
+
+        /**
+         * Asynchronously downloads PDF.
+         */
+        pdfjsLib.getDocument({ url:url,cMapPacked:true,maxImageSize:-1 }).promise.then(function (pdfDoc) {
+            renderPage(pageNum,pdfDoc);
+        });
+
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURIComponent(r[2]);
+            return null;
+        }
+    }
+</script>
+</body>
+</html>

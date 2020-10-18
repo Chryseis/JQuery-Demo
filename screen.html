@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>人脸识别简版</title>
+</head>
+
+<body>
+ <div>
+  <video id="video" width="300" height="200"></video>
+  <canvas id="canvas" width="300" height="200"></canvas>
+  <div>
+   <button onclick="startVideo(this)">开启视频</button>
+   <!-- <button onclick="pauseVideo(this)">暂停视频</button> -->
+   <button onclick="closeVideo(this)">关闭视频</button>
+   <button onclick="screenshotVideo(this)">截取视频图片</button>
+   <button onclick="getCanvasUrl(this)">获取图片内容</button>
+  </div>
+ </div>
+ <script>
+  let mediaStreamTrack = null;
+  const canvas = document.querySelector('canvas');
+  const context = canvas.getContext('2d');
+  const video = document.querySelector('video');
+  // const getMediaDevices = navigator.mediaDevices ? navigator.mediaDevices.getUserMedia : { getUserMedia: () => Promise.reject('不支持该api') };
+  function startVideo(e) {
+   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({
+     video: {
+      width:300,
+      height:200
+     },
+     audio: true
+    }).then(MediaStream => {
+     mediaStreamTrack = typeof MediaStream.stop === 'function' ? MediaStream : MediaStream.getTracks()[1];
+     console.log(MediaStream);
+     // video.src = (window.URL || window.webkitURL).createObjectURL(MediaStream);
+     video.srcObject = MediaStream
+     video.play();
+    }).catch(console.log)
+   } else {
+    console.log('不支持该api')
+   }
+
+  }
+  function pauseVideo() {
+   video.pause();
+  }
+  function closeVideo(e) {
+   mediaStreamTrack.stop();
+
+  }
+  function screenshotVideo() {
+   context.drawImage(video, 0, 0, 300, 200);
+  }
+
+  function getCanvasUrl() {
+   const base64 = canvas.toDataURL('image/jpg');
+   console.log(base64);
+  }
+ </script>
+</body>
+
+</html>

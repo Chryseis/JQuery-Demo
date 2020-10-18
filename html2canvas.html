@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        document.domain = document.domain
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<iframe src="http://localhost:4000/#t%3Dactivity_0_0" frameborder="0" width="375" height="667" id="preview"></iframe>
+<script src="./lib/jquery-3.2.1.min.js"></script>
+<script src="./lib/html2canvas.1.11.js"></script>
+<script>
+    $(function () {
+        $("#preview").on('load', function () {
+            html2canvas($("#preview").contents().find("html").get(0), {
+                allowTaint:true,
+                foreignObjectRendering: true,
+                scale:1
+            }).then(function (canvas) {
+                var dataUrl = canvas.toDataURL();
+                var newImg = document.createElement("img");
+                newImg.src = dataUrl;
+                document.body.appendChild(newImg);
+            });
+        })
+    })
+</script>
+</body>
+</html>

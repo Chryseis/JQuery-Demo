@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://fe.fuckyoumother.com/h5-activities/2017/yhcg20171225-pdf/pdf.js"></script>
+    <script src="./lib/pdf/pdf.js"></script>
     <style>
         html, body {
             width: 100%;
@@ -62,7 +62,7 @@
         var url = pdf || './image/test.pdf';
 
         // The workerSrc property shall be specified.
-        PDFJS.workerSrc = 'https://fe.fuckyoumother.com/h5-activities/2017/yhcg20171225-pdf/pdf.worker.js';
+        PDFJS.workerSrc = './lib/pdf/pdf.worker.js';
 
         var pdfDoc = null,
             pageNum = 1,
@@ -94,9 +94,9 @@
 
                 // Wait for rendering to finish
                 renderTask.promise.then(function () {
-                    document.getElementsByClassName('wrapper')[0].appendChild(canvas).setAttribute('style', 'opacity:0;transition:opacity .3s ease-in');
+                    document.getElementsByClassName('wrapper')[0].appendChild(canvas);
                     num < pdfDoc.numPages && renderPage(num + 1);
-                    num == pdfDoc.numPages && (closeLoading(), scrollChange());
+                    num == pdfDoc.numPages && (scrollChange());
                 });
             });
         }
